@@ -1,0 +1,90 @@
+<svg
+  xmlns="http://www.w3.org/2000/svg"
+  width="1200"
+  height="675"
+  viewBox="0 0 1200 675"
+  fill="none"
+>
+  <defs>
+    <linearGradient
+      id="gradient"
+      x1="100"
+      y1="50"
+      x2="1100"
+      y2="625"
+      gradientUnits="userSpaceOnUse"
+    >
+      <stop stop-color="#7C3AED"/>
+      <stop offset="0.5" stop-color="#2563EB"/>
+      <stop offset="1" stop-color="#06B6D4"/>
+    </linearGradient>
+  </defs>
+
+  <rect
+    width="1200"
+    height="675"
+    rx="40"
+    fill="#111827"
+  />
+
+  <circle
+    cx="250"
+    cy="170"
+    r="230"
+    fill="#7C3AED"
+    opacity="0.15"
+  />
+
+  <circle
+    cx="980"
+    cy="500"
+    r="270"
+    fill="#2563EB"
+    opacity="0.15"
+  />
+
+  <rect
+    x="250"
+    y="165"
+    width="700"
+    height="345"
+    rx="30"
+    stroke="url(#gradient)"
+    stroke-width="8"
+  />
+
+  <path
+    d="M330 260H700"
+    stroke="#94A3B8"
+    stroke-width="20"
+    stroke-linecap="round"
+  />
+
+  <path
+    d="M330 330H850"
+    stroke="#94A3B8"
+    stroke-width="14"
+    stroke-linecap="round"
+    opacity="0.7"
+  />
+
+  <path
+    d="M330 385H760"
+    stroke="#94A3B8"
+    stroke-width="14"
+    stroke-linecap="round"
+    opacity="0.5"
+  />
+
+  <text
+    x="600"
+    y="590"
+    text-anchor="middle"
+    fill="#F8FAFC"
+    font-size="38"
+    font-family="Arial, sans-serif"
+    font-weight="700"
+  >
+    Project Preview Coming Soon
+  </text>
+</svg>

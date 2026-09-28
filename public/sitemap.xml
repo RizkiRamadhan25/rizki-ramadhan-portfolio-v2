@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<urlset
+  xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+>
+  <url>
+    <loc>
+      https://rizki-ramadhan-portfolio.vercel.app/
+    </loc>
+    <priority>1.0</priority>
+  </url>
+
+  <url>
+    <loc>
+      https://rizki-ramadhan-portfolio.vercel.app/projects/savepoint
+    </loc>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>
+      https://rizki-ramadhan-portfolio.vercel.app/projects/cpu-scheduling-simulator
+    </loc>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>
+      https://rizki-ramadhan-portfolio.vercel.app/projects/wartegsmart
+    </loc>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>
+      https://rizki-ramadhan-portfolio.vercel.app/projects/serenity
+    </loc>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>
+      https://rizki-ramadhan-portfolio.vercel.app/projects/laras
+    </loc>
+    <priority>0.8</priority>
+  </url>
+</urlset>

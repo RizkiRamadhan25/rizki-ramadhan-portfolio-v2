@@ -1,0 +1,1527 @@
+@import url("https://fonts.googleapis.com/css2?family=Russo+One&display=swap");
+
+/* ==========================================================================
+   NEW OPENING CONCEPT — torn loader, cat-paw trail, scroll-to-portrait hero
+   ========================================================================== */
+
+.intro-tear-loader {
+  --loader-progress: 0;
+  position: fixed;
+  z-index: 10050;
+  inset: 0;
+  overflow: hidden;
+  color: #f6f6f4;
+  background: #0a0a0a;
+  font-family: Inter, ui-sans-serif, system-ui, sans-serif;
+}
+
+.intro-tear-backdrop {
+  position: absolute;
+  z-index: 0;
+  inset: -2%;
+  background: #0a0a0a;
+  pointer-events: none;
+  will-change: transform, opacity;
+}
+
+.intro-tear-panels,
+.intro-tear-panel {
+  position: absolute;
+  inset-block: 0;
+}
+
+.intro-tear-panels {
+  z-index: 2;
+  inset-inline: 0;
+  pointer-events: none;
+}
+
+.intro-tear-panel {
+  top: -2%;
+  height: 104%;
+  width: 29.5%;
+  background: #0a0a0a;
+  will-change: transform;
+}
+
+.intro-tear-panel--1 {
+  left: -1%;
+  clip-path: polygon(
+    0 0, 100% 0, 96% 9%, 100% 19%, 95% 29%, 99% 39%,
+    94% 50%, 100% 61%, 95% 72%, 98% 83%, 94% 91%, 100% 100%, 0 100%
+  );
+}
+
+.intro-tear-panel--2 {
+  left: 23.5%;
+  clip-path: polygon(
+    0 0, 100% 0, 97% 11%, 100% 23%, 94% 34%, 99% 46%,
+    95% 58%, 100% 69%, 94% 81%, 98% 91%, 94% 100%, 0 100%,
+    4% 90%, 0 77%, 5% 64%, 1% 51%, 6% 38%, 1% 26%, 5% 13%
+  );
+}
+
+.intro-tear-panel--3 {
+  left: 47.7%;
+  clip-path: polygon(
+    0 0, 100% 0, 95% 10%, 99% 22%, 94% 35%, 100% 48%,
+    95% 62%, 99% 75%, 94% 88%, 100% 100%, 0 100%,
+    5% 87%, 1% 74%, 6% 61%, 1% 48%, 5% 35%, 0 20%, 5% 9%
+  );
+}
+
+.intro-tear-panel--4 {
+  right: -1%;
+  clip-path: polygon(
+    5% 0, 100% 0, 100% 100%, 4% 100%, 8% 90%, 3% 78%,
+    9% 65%, 3% 54%, 8% 42%, 2% 30%, 8% 18%, 3% 8%
+  );
+}
+
+.intro-loader-meta {
+  position: absolute;
+  z-index: 10;
+  right: clamp(1.5rem, 3.4vw, 3.5rem);
+  left: clamp(1.5rem, 3.4vw, 3.5rem);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+  font-size: clamp(0.78rem, 1.35vw, 1.35rem);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+}
+
+.intro-loader-meta--top {
+  top: clamp(1.6rem, 4.2vw, 4rem);
+}
+
+.intro-loader-meta--bottom {
+  bottom: clamp(1.6rem, 4.2vw, 4rem);
+}
+
+.intro-loader-counter {
+  position: absolute;
+  z-index: 12;
+  top: 50%;
+  left: 50%;
+  display: block;
+  transform: translate(-50%, -50%);
+  color: transparent;
+  font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+  font-size: clamp(6rem, 14vw, 13rem);
+  font-weight: 900;
+  line-height: 0.8;
+  letter-spacing: -0.035em;
+  white-space: nowrap;
+  -webkit-text-stroke: clamp(1px, 0.16vw, 2.5px) #f6f6f4;
+  text-stroke: clamp(1px, 0.16vw, 2.5px) #f6f6f4;
+  will-change: transform, opacity;
+}
+
+.intro-loader-scratches {
+  position: absolute;
+  z-index: 11;
+  inset: 0;
+  pointer-events: none;
+}
+
+.intro-loader-scratch {
+  position: absolute;
+  top: -7%;
+  height: 114%;
+  background:
+    linear-gradient(
+      90deg,
+      #f4f4f1 0%,
+      #fff 40%,
+      #e8e8e5 72%,
+      #fff 100%
+    );
+  filter: drop-shadow(0 0 1rem rgb(255 255 255 / 15%));
+  will-change: transform, opacity;
+}
+
+.intro-loader-scratch--1 {
+  left: 19%;
+  width: clamp(2.2rem, 4.6vw, 4.8rem);
+  transform: rotate(-5deg);
+  clip-path: polygon(
+    42% 0, 69% 3%, 56% 10%, 78% 16%, 51% 24%, 75% 33%,
+    48% 42%, 69% 50%, 43% 59%, 67% 68%, 39% 77%, 63% 86%,
+    35% 94%, 53% 100%, 18% 100%, 27% 92%, 8% 83%, 25% 74%,
+    4% 65%, 23% 56%, 5% 47%, 25% 37%, 8% 28%, 28% 18%, 18% 8%
+  );
+}
+
+.intro-loader-scratch--2 {
+  left: 51%;
+  width: clamp(1.8rem, 3.2vw, 3.6rem);
+  transform: rotate(1.2deg);
+  clip-path: polygon(
+    38% 0, 71% 5%, 52% 12%, 76% 20%, 49% 28%, 72% 36%,
+    45% 45%, 69% 53%, 44% 62%, 68% 71%, 43% 80%, 66% 89%,
+    45% 100%, 12% 100%, 25% 91%, 7% 82%, 25% 73%, 6% 64%,
+    23% 55%, 5% 46%, 24% 37%, 7% 28%, 25% 18%, 15% 8%
+  );
+}
+
+.intro-loader-scratch--3 {
+  right: 20%;
+  width: clamp(2rem, 3.9vw, 4rem);
+  transform: rotate(3.4deg);
+  clip-path: polygon(
+    42% 0, 72% 4%, 54% 13%, 77% 22%, 51% 31%, 73% 40%,
+    48% 49%, 71% 58%, 45% 67%, 69% 77%, 43% 87%, 61% 100%,
+    25% 100%, 32% 90%, 12% 80%, 29% 70%, 8% 61%, 27% 51%,
+    7% 42%, 28% 32%, 11% 23%, 30% 13%, 20% 5%
+  );
+}
+
+/* --------------------------------------------------------------------------
+   Main hero
+   -------------------------------------------------------------------------- */
+
+.hero-new-opening {
+  position: relative;
+  isolation: isolate;
+  height: 100svh;
+  min-height: 42rem;
+  overflow: hidden;
+  color: #f7f7f5;
+  background: #060606;
+}
+
+.hero-new-opening__background {
+  position: absolute;
+  z-index: -3;
+  inset: 0;
+  background:
+    radial-gradient(circle at 52% 72%, rgb(77 0 0 / 13%), transparent 36rem),
+    #060606;
+}
+
+.hero-new-opening__background::before {
+  position: absolute;
+  inset: 0;
+  content: "";
+  opacity: 0.23;
+  background-image:
+    radial-gradient(circle at 10% 12%, rgb(255 255 255 / 55%) 0 0.7px, transparent 0.9px),
+    radial-gradient(circle at 27% 34%, rgb(255 255 255 / 38%) 0 0.65px, transparent 0.85px),
+    radial-gradient(circle at 48% 15%, rgb(255 255 255 / 48%) 0 0.6px, transparent 0.8px),
+    radial-gradient(circle at 69% 42%, rgb(255 255 255 / 40%) 0 0.7px, transparent 0.9px),
+    radial-gradient(circle at 87% 23%, rgb(255 255 255 / 52%) 0 0.6px, transparent 0.8px);
+  background-size:
+    26rem 22rem,
+    31rem 27rem,
+    34rem 25rem,
+    29rem 33rem,
+    38rem 28rem;
+}
+
+.hero-hello-scene,
+.hero-photo-scene {
+  position: absolute;
+  inset: 0;
+}
+
+.hero-hello-scene {
+  z-index: 3;
+}
+
+.hero-hello-signature,
+.hero-photo-signature {
+  position: absolute;
+  top: clamp(7rem, 12vh, 9rem);
+  left: clamp(2rem, 4.1vw, 4.8rem);
+  margin: 0;
+  font-size: clamp(0.95rem, 1.25vw, 1.25rem);
+  font-weight: 700;
+  letter-spacing: -0.025em;
+}
+
+.hero-hello-stack {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+
+.hero-hello-red-band {
+  display: flex;
+  will-change: clip-path, transform;
+  min-height: clamp(6.7rem, 13vh, 8.8rem);
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  padding: 0.7rem var(--page-x, 4vw);
+  background: #ff3732;
+}
+
+.hero-hello-red-band span {
+  display: block;
+  color: #f7f6f1;
+  font-family: "Russo One", "Arial Black", Arial, sans-serif;
+  font-size: clamp(3.25rem, 6.65vw, 6.8rem);
+  font-weight: 400;
+  line-height: 0.9;
+  letter-spacing: 0.025em;
+  text-transform: uppercase;
+  transform-origin: 50% 100%;
+  will-change: transform, opacity;
+}
+
+.hero-hello-role-band {
+  display: flex;
+  will-change: clip-path, transform;
+  min-height: clamp(8.5rem, 19vh, 12.2rem);
+  align-items: center;
+  justify-content: center;
+  padding: 1.1rem var(--page-x, 4vw) 1.6rem;
+  background: #090909;
+}
+
+.hero-hello-role-band h1 {
+  max-width: 94vw;
+  margin: 0;
+  color: #f3f2ed;
+  font-family: "Russo One", "Arial Black", Arial, sans-serif;
+  font-size: clamp(2.55rem, 5.2vw, 5.25rem);
+  font-weight: 400;
+  line-height: 0.98;
+  letter-spacing: 0.025em;
+  text-align: center;
+  text-transform: uppercase;
+  transform-origin: 50% 100%;
+  will-change: transform, opacity;
+}
+
+/* --------------------------------------------------------------------------
+   Cursor paw trail
+   -------------------------------------------------------------------------- */
+
+.hero-paw-trail-layer {
+  position: absolute;
+  z-index: 30;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.hero-paw-trail {
+  --paw-rotation: 0deg;
+  --paw-scale: 1;
+  position: absolute;
+  width: clamp(1.8rem, 2.3vw, 2.5rem);
+  aspect-ratio: 1;
+  transform:
+    translate(-50%, -50%)
+    rotate(var(--paw-rotation))
+    scale(var(--paw-scale));
+  background: #ff433d;
+  filter:
+    drop-shadow(0 0 0.55rem rgb(255 35 31 / 30%))
+    drop-shadow(0 0.2rem 0.55rem rgb(0 0 0 / 38%));
+  -webkit-mask:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cellipse cx='32' cy='42' rx='15' ry='12'/%3E%3Cellipse cx='14' cy='24' rx='6' ry='8' transform='rotate(-26 14 24)'/%3E%3Cellipse cx='27' cy='17' rx='6' ry='8' transform='rotate(-8 27 17)'/%3E%3Cellipse cx='40' cy='17' rx='6' ry='8' transform='rotate(8 40 17)'/%3E%3Cellipse cx='52' cy='25' rx='6' ry='8' transform='rotate(28 52 25)'/%3E%3C/svg%3E")
+    center / contain no-repeat;
+  mask:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cellipse cx='32' cy='42' rx='15' ry='12'/%3E%3Cellipse cx='14' cy='24' rx='6' ry='8' transform='rotate(-26 14 24)'/%3E%3Cellipse cx='27' cy='17' rx='6' ry='8' transform='rotate(-8 27 17)'/%3E%3Cellipse cx='40' cy='17' rx='6' ry='8' transform='rotate(8 40 17)'/%3E%3Cellipse cx='52' cy='25' rx='6' ry='8' transform='rotate(28 52 25)'/%3E%3C/svg%3E")
+    center / contain no-repeat;
+}
+
+.hero-paw-trail[data-side="1"] {
+  margin-left: 0.7rem;
+}
+
+/* --------------------------------------------------------------------------
+   Scroll portrait scene
+   -------------------------------------------------------------------------- */
+
+.hero-photo-scene {
+  z-index: 4;
+  pointer-events: none;
+}
+
+.hero-photo-signature {
+  z-index: 6;
+  color: rgb(247 247 245 / 92%);
+}
+
+.hero-photo-red-glow {
+  position: absolute;
+  z-index: 0;
+  right: -10%;
+  bottom: -26%;
+  left: -10%;
+  height: 58%;
+  pointer-events: none;
+  background:
+    radial-gradient(
+      ellipse at 50% 100%,
+      rgb(255 33 29 / 78%) 0%,
+      rgb(194 8 8 / 52%) 23%,
+      rgb(98 0 0 / 28%) 47%,
+      transparent 72%
+    );
+  filter: blur(22px);
+}
+
+.hero-photo-person {
+  position: absolute;
+  z-index: 8;
+  left: 50%;
+  bottom: -1.2rem;
+  width: clamp(25rem, 42vw, 42rem);
+  height: min(86vh, 53rem);
+  transform: translateX(-50%);
+  pointer-events: none;
+}
+
+.hero-photo-person::after {
+  position: absolute;
+  z-index: -1;
+  right: 12%;
+  bottom: -5%;
+  left: 12%;
+  height: 25%;
+  content: "";
+  background:
+    radial-gradient(
+      ellipse at center,
+      rgb(255 25 20 / 40%),
+      transparent 70%
+    );
+  filter: blur(30px);
+}
+
+.hero-photo-person img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: contain;
+  object-position: center bottom;
+  filter:
+    drop-shadow(0 2rem 3rem rgb(0 0 0 / 50%))
+    saturate(0.94)
+    contrast(1.03);
+  user-select: none;
+}
+
+.hero-photo-marquee {
+  position: absolute;
+  z-index: 4;
+  right: 0;
+  bottom: clamp(1.7rem, 4vh, 3.3rem);
+  left: 0;
+  overflow: hidden;
+  cursor: grab;
+  opacity: 0;
+  white-space: nowrap;
+  user-select: none;
+  touch-action: pan-y;
+  will-change: transform, opacity;
+}
+
+.hero-photo-marquee.is-dragging {
+  cursor: grabbing;
+}
+
+.hero-photo-marquee__track {
+  display: flex;
+  width: max-content;
+  will-change: transform;
+}
+
+.hero-photo-marquee__group {
+  display: flex;
+  flex: none;
+  align-items: center;
+  gap: clamp(3rem, 7vw, 8rem);
+  padding-right: clamp(3rem, 7vw, 8rem);
+}
+
+.hero-photo-marquee__group span {
+  display: block;
+  color: #ff9a9a;
+  font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+  font-size: clamp(6.7rem, 13.6vw, 14.2rem);
+  font-weight: 900;
+  line-height: 0.78;
+  letter-spacing: 0.025em;
+  text-transform: uppercase;
+  text-shadow:
+    0 0.12em 1.2em rgb(255 28 24 / 25%),
+    0 0.02em 0 rgb(255 255 255 / 8%);
+}
+
+/* --------------------------------------------------------------------------
+   Responsive
+   -------------------------------------------------------------------------- */
+
+@media (max-width: 900px) {
+  .hero-new-opening {
+    min-height: 38rem;
+  }
+
+  .hero-hello-signature,
+  .hero-photo-signature {
+    top: 6.5rem;
+    left: 1.35rem;
+  }
+
+
+  .hero-hello-red-band {
+    min-height: 6rem;
+  }
+
+  .hero-hello-red-band span {
+    font-size: clamp(2.9rem, 11vw, 5rem);
+  }
+
+  .hero-hello-role-band {
+    min-height: 10rem;
+  }
+
+  .hero-hello-role-band h1 {
+    font-size: clamp(2.25rem, 8.4vw, 4rem);
+  }
+
+  .hero-photo-person {
+    width: min(78vw, 32rem);
+    height: min(74vh, 42rem);
+  }
+
+  .hero-photo-marquee__group span {
+    font-size: clamp(5rem, 19vw, 9rem);
+  }
+
+  .intro-loader-meta {
+    right: 1.35rem;
+    left: 1.35rem;
+    font-size: 0.78rem;
+  }
+
+  .intro-loader-meta--bottom span:first-child {
+    max-width: 13rem;
+  }
+}
+
+@media (max-width: 640px) {
+  .intro-loader-meta--bottom span:first-child {
+    display: none;
+  }
+
+  .intro-loader-counter {
+    font-size: clamp(5rem, 24vw, 8rem);
+  }
+
+
+  .hero-hello-red-band span {
+    font-size: clamp(2.65rem, 13vw, 4.2rem);
+  }
+
+  .hero-hello-role-band h1 {
+    font-size: clamp(2rem, 9.4vw, 3.45rem);
+  }
+
+  .hero-photo-person {
+    width: min(88vw, 29rem);
+    height: min(70vh, 38rem);
+  }
+}
+
+@media (hover: none), (pointer: coarse) {
+  .hero-paw-trail-layer {
+    display: none;
+  }
+
+  .hero-photo-marquee {
+    cursor: default;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .intro-tear-loader {
+    display: none !important;
+  }
+
+  .hero-paw-trail-layer {
+    display: none;
+  }
+}
+
+
+/* Full-screen burger navigation ------------------------------------------- */
+
+html.portfolio-menu-open,
+body.portfolio-menu-open {
+  overflow: hidden !important;
+  overscroll-behavior: none !important;
+}
+
+body.portfolio-menu-open {
+  touch-action: none;
+}
+
+/*
+ * Keep the existing RR brand from the original site header, but replace all
+ * of the old navigation controls with the new burger trigger below.
+ */
+.site-nav > :not(.brand-mark) {
+  display: none !important;
+}
+
+.site-nav {
+  justify-content: flex-start !important;
+}
+
+.portfolio-menu-trigger {
+  position: fixed;
+  z-index: 3205;
+  top: 1.15rem;
+  right: max(var(--page-x, 2rem), 2.2rem);
+  width: 3.55rem;
+  height: 3.55rem;
+  display: grid;
+  place-content: center;
+  gap: 0.36rem;
+  padding: 0;
+  border: 1px solid rgb(255 255 255 / 13%);
+  border-radius: 50%;
+  background: rgb(12 12 12 / 68%);
+  box-shadow:
+    0 14px 40px rgb(0 0 0 / 30%),
+    inset 0 1px 0 rgb(255 255 255 / 7%);
+  color: #f7f7f4;
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  transition:
+    transform 240ms ease,
+    background-color 240ms ease,
+    border-color 240ms ease,
+    opacity 240ms ease;
+}
+
+.portfolio-menu-trigger:hover {
+  transform: scale(1.055);
+  border-color: rgb(255 255 255 / 24%);
+  background: rgb(255 255 255 / 9%);
+}
+
+.portfolio-menu-trigger.is-hidden,
+.portfolio-menu-trigger.is-open {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.portfolio-menu-trigger span {
+  width: 1.34rem;
+  height: 1.5px;
+  display: block;
+  border-radius: 999px;
+  background: currentColor;
+}
+
+.portfolio-menu-overlay {
+  position: fixed;
+  z-index: 3200;
+  inset: 0;
+  display: none;
+  align-items: stretch;
+  justify-content: center;
+  overflow: hidden;
+  padding:
+    max(1.35rem, env(safe-area-inset-top))
+    max(1.35rem, env(safe-area-inset-right))
+    max(1.35rem, env(safe-area-inset-bottom))
+    max(1.35rem, env(safe-area-inset-left));
+  background: rgb(2 2 2 / 92%);
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  isolation: isolate;
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+}
+
+.portfolio-menu-overlay::before {
+  position: absolute;
+  z-index: -1;
+  inset: 0;
+  content: "";
+  pointer-events: none;
+  background:
+    radial-gradient(circle at 14% 12%, rgb(255 255 255 / 5%), transparent 24rem),
+    radial-gradient(circle at 84% 84%, rgb(90 102 255 / 7%), transparent 28rem);
+}
+
+.portfolio-menu-shell {
+  width: min(100%, 78rem);
+  height: 100%;
+  min-height: 0;
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr) auto;
+  gap: clamp(1.2rem, 2.4vw, 2rem);
+}
+
+.portfolio-menu-topbar,
+.portfolio-menu-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.2rem;
+}
+
+.portfolio-menu-heading {
+  display: grid;
+  gap: 0.3rem;
+}
+
+.portfolio-menu-eyebrow {
+  font-size: 0.62rem;
+  font-weight: 650;
+  letter-spacing: 0.22em;
+  color: rgb(255 255 255 / 42%);
+}
+
+.portfolio-menu-heading strong {
+  font-size: clamp(1.05rem, 1.5vw, 1.35rem);
+  font-weight: 650;
+  letter-spacing: -0.035em;
+}
+
+.portfolio-menu-close {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  padding: 0.65rem 0.15rem 0.65rem 0.75rem;
+  border: 0;
+  background: transparent;
+  color: #f7f7f4;
+  font-size: clamp(1rem, 1.7vw, 1.35rem);
+  font-weight: 700;
+  letter-spacing: -0.035em;
+  text-transform: uppercase;
+}
+
+.portfolio-menu-close > span:last-child {
+  font-size: 1.6em;
+  line-height: 0.75;
+  transition: transform 240ms ease;
+}
+
+.portfolio-menu-close:hover > span:last-child {
+  transform: rotate(90deg);
+}
+
+.portfolio-menu-grid {
+  min-height: 0;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-rows: repeat(2, minmax(0, 1fr));
+  gap: clamp(0.75rem, 1.5vw, 1.15rem);
+}
+
+.portfolio-menu-card {
+  position: relative;
+  min-height: 0;
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  overflow: hidden;
+  padding: clamp(1.35rem, 2.6vw, 2.35rem);
+  border: 1px solid rgb(255 255 255 / 9%);
+  border-radius: clamp(1.25rem, 2vw, 1.8rem);
+  background:
+    linear-gradient(145deg, rgb(255 255 255 / 19%), rgb(255 255 255 / 11%));
+  box-shadow:
+    inset 0 1px 0 rgb(255 255 255 / 9%),
+    0 24px 60px rgb(0 0 0 / 20%);
+  color: #f4f4f1;
+  backdrop-filter: blur(22px) saturate(110%);
+  -webkit-backdrop-filter: blur(22px) saturate(110%);
+  transform-origin: center;
+  transition:
+    transform 360ms cubic-bezier(0.16, 1, 0.3, 1),
+    background-color 280ms ease,
+    border-color 280ms ease,
+    box-shadow 280ms ease;
+}
+
+.portfolio-menu-card::before {
+  position: absolute;
+  inset: 0;
+  content: "";
+  pointer-events: none;
+  background:
+    radial-gradient(circle at 18% 8%, rgb(255 255 255 / 10%), transparent 42%);
+  opacity: 0;
+  transition: opacity 280ms ease;
+}
+
+.portfolio-menu-card:hover,
+.portfolio-menu-card:focus-visible {
+  z-index: 2;
+  transform: scale(1.035);
+  border-color: rgb(255 255 255 / 18%);
+  background:
+    linear-gradient(145deg, rgb(255 255 255 / 25%), rgb(255 255 255 / 14%));
+  box-shadow:
+    inset 0 1px 0 rgb(255 255 255 / 12%),
+    0 32px 82px rgb(0 0 0 / 34%);
+}
+
+.portfolio-menu-card:hover::before,
+.portfolio-menu-card:focus-visible::before {
+  opacity: 1;
+}
+
+.portfolio-menu-card__index {
+  position: absolute;
+  top: clamp(1rem, 1.6vw, 1.35rem);
+  left: clamp(1rem, 1.6vw, 1.35rem);
+  font-size: 0.62rem;
+  font-weight: 650;
+  letter-spacing: 0.16em;
+  color: rgb(255 255 255 / 38%);
+}
+
+.portfolio-menu-card__label {
+  align-self: center;
+  width: 100%;
+  text-align: center;
+  font-size: clamp(1.55rem, 3vw, 3.2rem);
+  font-weight: 700;
+  line-height: 0.95;
+  letter-spacing: -0.055em;
+}
+
+.portfolio-menu-card__arrow {
+  position: absolute;
+  right: clamp(1rem, 1.6vw, 1.35rem);
+  bottom: clamp(1rem, 1.6vw, 1.35rem);
+  font-size: 1.15rem;
+  color: rgb(255 255 255 / 52%);
+  transition: transform 280ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.portfolio-menu-card:hover .portfolio-menu-card__arrow {
+  transform: translate(4px, -4px);
+}
+
+.portfolio-menu-footer {
+  font-size: 0.58rem;
+  font-weight: 650;
+  letter-spacing: 0.16em;
+  color: rgb(255 255 255 / 36%);
+}
+
+@media (max-width: 900px) {
+  .portfolio-menu-trigger {
+    top: 0.85rem;
+    right: max(var(--page-x, 1.35rem), 1.35rem);
+    width: 3.15rem;
+    height: 3.15rem;
+  }
+
+  .portfolio-menu-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-rows: repeat(3, minmax(0, 1fr));
+  }
+
+  .portfolio-menu-card__label {
+    font-size: clamp(1.45rem, 5vw, 2.4rem);
+  }
+}
+
+@media (max-width: 600px) {
+  .portfolio-menu-overlay {
+    overflow-y: auto;
+    padding: 1rem;
+  }
+
+  .portfolio-menu-shell {
+    height: auto;
+    min-height: calc(100svh - 2rem);
+  }
+
+  .portfolio-menu-grid {
+    grid-template-columns: 1fr;
+    grid-template-rows: none;
+  }
+
+  .portfolio-menu-card {
+    min-height: 8.6rem;
+    padding: 1.2rem;
+  }
+
+  .portfolio-menu-card__label {
+    font-size: 1.8rem;
+  }
+
+  .portfolio-menu-footer {
+    padding-bottom: 0.25rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .portfolio-menu-card,
+  .portfolio-menu-trigger,
+  .portfolio-menu-close > span:last-child,
+  .portfolio-menu-card__arrow {
+    transition: none !important;
+  }
+}
+
+
+/* Navigation cleanup + reliable burger overlay ----------------------------- */
+
+/* Remove the old navbar completely. Only the standalone burger button remains. */
+.site-header,
+.site-nav {
+  display: none !important;
+}
+
+/* Move the hero signature into the top-left chrome position left by navbar. */
+.hero-hello-signature {
+  top: clamp(1.7rem, 3.4vh, 2.35rem) !important;
+  left: clamp(1.7rem, 3.7vw, 3rem) !important;
+  z-index: 20;
+}
+
+/* Keep the photo-scene signature aligned with the same left margin. */
+.hero-photo-signature {
+  left: clamp(1.7rem, 3.7vw, 3rem) !important;
+}
+
+/* Burger = three clean lines only; no circle, no border, no background. */
+.portfolio-menu-trigger {
+  top: clamp(1.55rem, 3vh, 2.15rem) !important;
+  right: clamp(1.7rem, 3.7vw, 3rem) !important;
+  width: 2.35rem !important;
+  height: 1.75rem !important;
+  display: flex !important;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: center;
+  gap: 0.34rem !important;
+  padding: 0 !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  color: #f7f7f4;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+}
+
+.portfolio-menu-trigger:hover {
+  transform: none !important;
+  border-color: transparent !important;
+  background: transparent !important;
+}
+
+.portfolio-menu-trigger span {
+  height: 2px !important;
+  border-radius: 999px;
+  background: currentColor;
+  transition:
+    width 220ms ease,
+    transform 220ms ease,
+    opacity 220ms ease;
+}
+
+.portfolio-menu-trigger span:nth-child(1) {
+  width: 2rem !important;
+}
+
+.portfolio-menu-trigger span:nth-child(2) {
+  width: 1.55rem !important;
+}
+
+.portfolio-menu-trigger span:nth-child(3) {
+  width: 2rem !important;
+}
+
+.portfolio-menu-trigger:hover span:nth-child(2) {
+  width: 2rem !important;
+}
+
+/*
+ * The overlay is always mounted. React only toggles .is-open.
+ * This makes opening reliable even if GSAP is unavailable or delayed.
+ */
+.portfolio-menu-overlay {
+  display: flex !important;
+  opacity: 0 !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+  transform: translateY(-0.6rem);
+  transition:
+    opacity 340ms cubic-bezier(0.22, 1, 0.36, 1),
+    transform 420ms cubic-bezier(0.22, 1, 0.36, 1),
+    visibility 0s linear 420ms;
+}
+
+.portfolio-menu-overlay.is-open {
+  opacity: 1 !important;
+  visibility: visible !important;
+  pointer-events: auto !important;
+  transform: translateY(0);
+  transition:
+    opacity 340ms cubic-bezier(0.22, 1, 0.36, 1),
+    transform 420ms cubic-bezier(0.22, 1, 0.36, 1),
+    visibility 0s linear 0s;
+}
+
+.portfolio-menu-card,
+.portfolio-menu-topbar,
+.portfolio-menu-footer {
+  opacity: 0;
+  transform: translateY(1.5rem) scale(0.97);
+  transition:
+    opacity 360ms ease,
+    transform 520ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.portfolio-menu-topbar,
+.portfolio-menu-footer {
+  transform: translateY(-0.8rem);
+}
+
+.portfolio-menu-overlay.is-open .portfolio-menu-topbar,
+.portfolio-menu-overlay.is-open .portfolio-menu-footer,
+.portfolio-menu-overlay.is-open .portfolio-menu-card {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+.portfolio-menu-overlay.is-open .portfolio-menu-card:nth-child(1) {
+  transition-delay: 70ms;
+}
+
+.portfolio-menu-overlay.is-open .portfolio-menu-card:nth-child(2) {
+  transition-delay: 105ms;
+}
+
+.portfolio-menu-overlay.is-open .portfolio-menu-card:nth-child(3) {
+  transition-delay: 140ms;
+}
+
+.portfolio-menu-overlay.is-open .portfolio-menu-card:nth-child(4) {
+  transition-delay: 175ms;
+}
+
+.portfolio-menu-overlay.is-open .portfolio-menu-card:nth-child(5) {
+  transition-delay: 210ms;
+}
+
+.portfolio-menu-overlay.is-open .portfolio-menu-card:nth-child(6) {
+  transition-delay: 245ms;
+}
+
+@media (max-width: 900px) {
+  .hero-hello-signature {
+    top: 1.45rem !important;
+    left: 1.35rem !important;
+  }
+
+  .hero-photo-signature {
+    left: 1.35rem !important;
+  }
+
+  .portfolio-menu-trigger {
+    top: 1.35rem !important;
+    right: 1.35rem !important;
+    width: 2.15rem !important;
+    height: 1.6rem !important;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .portfolio-menu-overlay,
+  .portfolio-menu-card,
+  .portfolio-menu-topbar,
+  .portfolio-menu-footer,
+  .portfolio-menu-trigger span {
+    transition: none !important;
+  }
+}
+
+
+/* Burger navigation — card refinement ------------------------------------ */
+
+/* Let a little of the page remain visible through the menu. */
+.portfolio-menu-overlay.is-open {
+  background: rgb(2 2 2 / 82%) !important;
+  backdrop-filter: blur(14px) !important;
+  -webkit-backdrop-filter: blur(14px) !important;
+}
+
+/* Do not let the grid consume all available viewport height. */
+.portfolio-menu-shell {
+  width: min(100%, 72rem) !important;
+  grid-template-rows: auto auto auto !important;
+  align-content: center !important;
+  gap: clamp(1rem, 2vh, 1.45rem) !important;
+}
+
+.portfolio-menu-topbar {
+  margin-bottom: clamp(0.3rem, 1vh, 0.7rem);
+}
+
+.portfolio-menu-grid {
+  width: min(100%, 64rem) !important;
+  height: auto !important;
+  min-height: 0 !important;
+  margin-inline: auto !important;
+  grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+  grid-template-rows: repeat(2, clamp(9.2rem, 20vh, 11.6rem)) !important;
+  gap: clamp(0.7rem, 1.35vw, 1rem) !important;
+  align-self: center !important;
+}
+
+/*
+ * Real translucent glass instead of the previous almost-solid grey.
+ * The backdrop can now be seen clearly through the cards.
+ */
+.portfolio-menu-card {
+  min-height: 0 !important;
+  height: 100% !important;
+  padding: 1rem !important;
+  border: 1px solid rgb(255 255 255 / 12%) !important;
+  border-radius: 1.2rem !important;
+  background: rgb(255 255 255 / 7%) !important;
+  box-shadow:
+    inset 0 1px 0 rgb(255 255 255 / 7%),
+    0 18px 42px rgb(0 0 0 / 16%) !important;
+  backdrop-filter: blur(18px) saturate(115%) !important;
+  -webkit-backdrop-filter: blur(18px) saturate(115%) !important;
+}
+
+.portfolio-menu-card::before {
+  background:
+    radial-gradient(
+      circle at 18% 10%,
+      rgb(255 255 255 / 10%),
+      transparent 48%
+    ) !important;
+}
+
+.portfolio-menu-card:hover,
+.portfolio-menu-card:focus-visible {
+  background: rgb(255 255 255 / 12%) !important;
+  border-color: rgb(255 255 255 / 22%) !important;
+  box-shadow:
+    inset 0 1px 0 rgb(255 255 255 / 10%),
+    0 26px 58px rgb(0 0 0 / 24%) !important;
+}
+
+/*
+ * Force the navigation title into a dedicated layer.
+ * This prevents old/global anchor styles or the entrance animation from
+ * accidentally hiding the label.
+ */
+.portfolio-menu-card__label {
+  position: absolute !important;
+  z-index: 3 !important;
+  inset: 0 !important;
+  display: grid !important;
+  place-items: center !important;
+  width: auto !important;
+  padding: 1.5rem !important;
+  color: #f7f7f4 !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+  text-align: center !important;
+  font-size: clamp(1.45rem, 2.35vw, 2.45rem) !important;
+  font-weight: 700 !important;
+  line-height: 1 !important;
+  letter-spacing: -0.045em !important;
+  text-decoration: none !important;
+  pointer-events: none !important;
+  mix-blend-mode: normal !important;
+}
+
+.portfolio-menu-card__index {
+  z-index: 4 !important;
+  top: 0.9rem !important;
+  left: 1rem !important;
+  color: rgb(255 255 255 / 46%) !important;
+}
+
+.portfolio-menu-card__arrow {
+  z-index: 4 !important;
+  right: 1rem !important;
+  bottom: 0.9rem !important;
+  color: rgb(255 255 255 / 58%) !important;
+}
+
+/* Ensure every child stays visible after the card entrance transition. */
+.portfolio-menu-overlay.is-open .portfolio-menu-card__label,
+.portfolio-menu-overlay.is-open .portfolio-menu-card__index,
+.portfolio-menu-overlay.is-open .portfolio-menu-card__arrow {
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+.portfolio-menu-footer {
+  width: min(100%, 64rem);
+  margin-inline: auto;
+  padding-top: 0.15rem;
+}
+
+@media (max-width: 900px) {
+  .portfolio-menu-shell {
+    width: min(100%, 46rem) !important;
+  }
+
+  .portfolio-menu-grid {
+    width: min(100%, 42rem) !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    grid-template-rows: repeat(3, 9.25rem) !important;
+  }
+
+  .portfolio-menu-card__label {
+    font-size: clamp(1.35rem, 4vw, 2rem) !important;
+  }
+}
+
+@media (max-width: 600px) {
+  .portfolio-menu-overlay {
+    overflow-y: auto !important;
+  }
+
+  .portfolio-menu-shell {
+    display: grid !important;
+    align-content: start !important;
+    min-height: 0 !important;
+  }
+
+  .portfolio-menu-grid {
+    width: 100% !important;
+    grid-template-columns: 1fr !important;
+    grid-template-rows: none !important;
+    grid-auto-rows: 7.8rem !important;
+  }
+
+  .portfolio-menu-card {
+    height: 7.8rem !important;
+  }
+
+  .portfolio-menu-card__label {
+    font-size: 1.55rem !important;
+  }
+}
+
+
+/* Burger menu — centered layout + enter/exit motion ----------------------- */
+
+.portfolio-menu-overlay {
+  padding:
+    max(1.4rem, env(safe-area-inset-top))
+    max(1.6rem, env(safe-area-inset-right))
+    max(1.4rem, env(safe-area-inset-bottom))
+    max(1.6rem, env(safe-area-inset-left)) !important;
+}
+
+/*
+ * The shell now fills the viewport overlay. Header/footer are absolute,
+ * while the card grid itself is centered against the viewport — not against
+ * the remaining grid space.
+ */
+.portfolio-menu-shell {
+  position: relative !important;
+  width: min(100%, 74rem) !important;
+  height: 100% !important;
+  display: block !important;
+  margin: 0 auto !important;
+}
+
+.portfolio-menu-topbar {
+  position: absolute !important;
+  z-index: 5;
+  top: clamp(0.3rem, 2.2vh, 1.15rem) !important;
+  left: 0 !important;
+  right: 0 !important;
+  margin: 0 !important;
+}
+
+.portfolio-menu-grid {
+  position: absolute !important;
+  z-index: 3;
+  top: 50% !important;
+  left: 50% !important;
+  width: min(64rem, calc(100vw - 5rem)) !important;
+  margin: 0 !important;
+  transform: translate(-50%, -50%) !important;
+  grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+  grid-template-rows: repeat(2, clamp(8.6rem, 17vh, 10.35rem)) !important;
+  gap: clamp(0.75rem, 1.25vw, 1rem) !important;
+}
+
+.portfolio-menu-footer {
+  position: absolute !important;
+  z-index: 5;
+  left: 50% !important;
+  bottom: clamp(0.15rem, 1.2vh, 0.75rem) !important;
+  width: min(64rem, calc(100vw - 5rem)) !important;
+  margin: 0 !important;
+  transform: translateX(-50%) !important;
+}
+
+/* The overlay itself fades/slides in and out. */
+.portfolio-menu-overlay {
+  opacity: 0 !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+  transform: scale(1.012);
+  transition:
+    opacity 340ms cubic-bezier(0.22, 1, 0.36, 1),
+    transform 420ms cubic-bezier(0.22, 1, 0.36, 1),
+    visibility 0s linear 620ms !important;
+}
+
+.portfolio-menu-overlay.is-open {
+  opacity: 1 !important;
+  visibility: visible !important;
+  pointer-events: auto !important;
+  transform: scale(1);
+  transition:
+    opacity 340ms cubic-bezier(0.22, 1, 0.36, 1),
+    transform 420ms cubic-bezier(0.22, 1, 0.36, 1),
+    visibility 0s linear 0s !important;
+}
+
+/*
+ * Card IN:
+ *   small + lower + slightly blurred -> full size.
+ * Card OUT:
+ *   full size -> smaller + lower + blurred.
+ */
+.portfolio-menu-card {
+  opacity: 0 !important;
+  transform: translateY(2rem) scale(0.88) !important;
+  filter: blur(7px);
+  transition:
+    opacity 300ms ease,
+    transform 520ms cubic-bezier(0.16, 1, 0.3, 1),
+    filter 420ms ease,
+    background-color 280ms ease,
+    border-color 280ms ease,
+    box-shadow 280ms ease !important;
+  will-change: transform, opacity, filter;
+}
+
+.portfolio-menu-overlay.is-open .portfolio-menu-card {
+  opacity: 1 !important;
+  transform: translateY(0) scale(1) !important;
+  filter: blur(0);
+}
+
+/* IN stagger */
+.portfolio-menu-overlay.is-open .portfolio-menu-card:nth-child(1) {
+  transition-delay: 70ms, 70ms, 70ms, 0ms, 0ms, 0ms !important;
+}
+
+.portfolio-menu-overlay.is-open .portfolio-menu-card:nth-child(2) {
+  transition-delay: 115ms, 115ms, 115ms, 0ms, 0ms, 0ms !important;
+}
+
+.portfolio-menu-overlay.is-open .portfolio-menu-card:nth-child(3) {
+  transition-delay: 160ms, 160ms, 160ms, 0ms, 0ms, 0ms !important;
+}
+
+.portfolio-menu-overlay.is-open .portfolio-menu-card:nth-child(4) {
+  transition-delay: 205ms, 205ms, 205ms, 0ms, 0ms, 0ms !important;
+}
+
+.portfolio-menu-overlay.is-open .portfolio-menu-card:nth-child(5) {
+  transition-delay: 250ms, 250ms, 250ms, 0ms, 0ms, 0ms !important;
+}
+
+.portfolio-menu-overlay.is-open .portfolio-menu-card:nth-child(6) {
+  transition-delay: 295ms, 295ms, 295ms, 0ms, 0ms, 0ms !important;
+}
+
+/* OUT stagger in reverse order */
+.portfolio-menu-overlay:not(.is-open) .portfolio-menu-card:nth-child(1) {
+  transition-delay: 225ms, 225ms, 225ms, 0ms, 0ms, 0ms !important;
+}
+
+.portfolio-menu-overlay:not(.is-open) .portfolio-menu-card:nth-child(2) {
+  transition-delay: 180ms, 180ms, 180ms, 0ms, 0ms, 0ms !important;
+}
+
+.portfolio-menu-overlay:not(.is-open) .portfolio-menu-card:nth-child(3) {
+  transition-delay: 135ms, 135ms, 135ms, 0ms, 0ms, 0ms !important;
+}
+
+.portfolio-menu-overlay:not(.is-open) .portfolio-menu-card:nth-child(4) {
+  transition-delay: 90ms, 90ms, 90ms, 0ms, 0ms, 0ms !important;
+}
+
+.portfolio-menu-overlay:not(.is-open) .portfolio-menu-card:nth-child(5) {
+  transition-delay: 45ms, 45ms, 45ms, 0ms, 0ms, 0ms !important;
+}
+
+.portfolio-menu-overlay:not(.is-open) .portfolio-menu-card:nth-child(6) {
+  transition-delay: 0ms !important;
+}
+
+/* Header/footer join the motion, but stay independent of grid centering. */
+.portfolio-menu-topbar {
+  opacity: 0 !important;
+  transform: translateY(-1rem) !important;
+  transition:
+    opacity 300ms ease,
+    transform 420ms cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+.portfolio-menu-overlay.is-open .portfolio-menu-topbar {
+  opacity: 1 !important;
+  transform: translateY(0) !important;
+  transition-delay: 40ms !important;
+}
+
+.portfolio-menu-footer {
+  opacity: 0 !important;
+  /* Preserve the horizontal centering while moving vertically. */
+  transform: translate(-50%, 0.8rem) !important;
+  transition:
+    opacity 300ms ease,
+    transform 420ms cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+.portfolio-menu-overlay.is-open .portfolio-menu-footer {
+  opacity: 1 !important;
+  transform: translate(-50%, 0) !important;
+  transition-delay: 230ms !important;
+}
+
+/* Hover remains stronger after the card has fully entered. */
+.portfolio-menu-overlay.is-open .portfolio-menu-card:hover,
+.portfolio-menu-overlay.is-open .portfolio-menu-card:focus-visible {
+  transform: translateY(-0.25rem) scale(1.045) !important;
+  filter: blur(0);
+}
+
+@media (max-width: 900px) {
+  .portfolio-menu-grid {
+    width: min(42rem, calc(100vw - 3rem)) !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    grid-template-rows: repeat(3, 8.75rem) !important;
+  }
+
+  .portfolio-menu-footer {
+    width: min(42rem, calc(100vw - 3rem)) !important;
+  }
+}
+
+@media (max-width: 600px) {
+  .portfolio-menu-overlay {
+    overflow-y: auto !important;
+  }
+
+  .portfolio-menu-shell {
+    min-height: 42rem !important;
+  }
+
+  .portfolio-menu-topbar {
+    position: relative !important;
+    top: auto !important;
+    left: auto !important;
+    right: auto !important;
+    margin-bottom: 1.2rem !important;
+  }
+
+  .portfolio-menu-grid {
+    position: relative !important;
+    top: auto !important;
+    left: auto !important;
+    width: 100% !important;
+    transform: none !important;
+    grid-template-columns: 1fr !important;
+    grid-template-rows: none !important;
+    grid-auto-rows: 7.35rem !important;
+  }
+
+  .portfolio-menu-footer {
+    position: relative !important;
+    left: auto !important;
+    bottom: auto !important;
+    width: 100% !important;
+    margin-top: 1.2rem !important;
+    transform: translateY(0.8rem) !important;
+  }
+
+  .portfolio-menu-overlay.is-open .portfolio-menu-footer {
+    transform: translateY(0) !important;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .portfolio-menu-overlay,
+  .portfolio-menu-card,
+  .portfolio-menu-topbar,
+  .portfolio-menu-footer {
+    transition: none !important;
+    filter: none !important;
+  }
+}
+
+
+/* ==========================================================================
+   CLEAN REAL-READINESS LOADER
+   Removes the old paper-tear / claw graphics entirely.
+   ========================================================================== */
+
+.intro-loader--clean .intro-tear-panels,
+.intro-loader--clean .intro-tear-panel,
+.intro-loader--clean .intro-loader-scratches,
+.intro-loader--clean .intro-loader-scratch {
+  display: none !important;
+}
+
+.intro-loader--clean {
+  background: #080808 !important;
+}
+
+.intro-loader--clean .intro-tear-backdrop {
+  inset: 0 !important;
+  background: #080808 !important;
+  will-change: transform, opacity;
+}
+
+.intro-loader--clean .intro-loader-counter {
+  backface-visibility: hidden;
+  -webkit-font-smoothing: antialiased;
+  transform-origin: 50% 50%;
+  will-change: transform, opacity, filter;
+}
+
+/*
+ * Keep the percentage visually centered even while it scales dramatically
+ * during the final camera-push transition.
+ */
+.intro-loader--clean .intro-loader-counter {
+  top: 50% !important;
+  left: 50% !important;
+}
+
+/* No legacy pseudo-elements / decorative marks may leak into the clean loader. */
+.intro-loader--clean::before,
+.intro-loader--clean::after,
+.intro-loader--clean .intro-tear-backdrop::before,
+.intro-loader--clean .intro-tear-backdrop::after {
+  content: none !important;
+  display: none !important;
+}
+
+@media (max-width: 720px) {
+  .intro-loader--clean .intro-loader-counter {
+    font-size: clamp(5.2rem, 24vw, 8rem) !important;
+  }
+}

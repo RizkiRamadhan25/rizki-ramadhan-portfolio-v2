@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="700" viewBox="0 0 1200 700">
+  <rect width="1200" height="700" fill="#111827"/><rect x="90" y="95" width="1020" height="510" rx="30" fill="#1f2937" stroke="#64748b" stroke-width="4"/>
+  <g fill="#334155"><rect x="150" y="165" width="900" height="72" rx="14"/><rect x="150" y="275" width="900" height="72" rx="14"/><rect x="150" y="385" width="900" height="72" rx="14"/></g>
+  <g><rect x="185" y="180" width="210" height="42" rx="8" fill="#ef4444"/><rect x="410" y="180" width="330" height="42" rx="8" fill="#f59e0b"/><rect x="755" y="180" width="245" height="42" rx="8" fill="#22c55e"/><rect x="185" y="290" width="350" height="42" rx="8" fill="#3b82f6"/><rect x="550" y="290" width="450" height="42" rx="8" fill="#8b5cf6"/></g>
+  <text x="600" y="555" fill="#fff" font-family="Arial Black,Arial" font-size="58" text-anchor="middle">CPU SCHEDULING</text>
+</svg>

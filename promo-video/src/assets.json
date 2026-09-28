@@ -1,0 +1,112 @@
+{
+  "desktop-about": {
+    "src": "sections/desktop-about.jpg",
+    "width": 1409,
+    "height": 990
+  },
+  "desktop-contact": {
+    "src": "sections/desktop-contact.jpg",
+    "width": 1409,
+    "height": 990
+  },
+  "desktop-dark": {
+    "src": "sections/desktop-dark.jpg",
+    "width": 1409,
+    "height": 990
+  },
+  "desktop-detail": {
+    "src": "sections/desktop-detail.jpg",
+    "width": 1409,
+    "height": 990
+  },
+  "desktop-gallery": {
+    "src": "sections/desktop-gallery.jpg",
+    "width": 1424,
+    "height": 1000
+  },
+  "desktop-home": {
+    "src": "sections/desktop-home.jpg",
+    "width": 1409,
+    "height": 990
+  },
+  "desktop-journey": {
+    "src": "sections/desktop-journey.jpg",
+    "width": 1409,
+    "height": 990
+  },
+  "desktop-learning": {
+    "src": "sections/desktop-learning.jpg",
+    "width": 1409,
+    "height": 990
+  },
+  "desktop-projects": {
+    "src": "sections/desktop-projects.jpg",
+    "width": 1409,
+    "height": 990
+  },
+  "desktop-skills": {
+    "src": "sections/desktop-skills.jpg",
+    "width": 1409,
+    "height": 990
+  },
+  "mobile-about": {
+    "src": "sections/mobile-about.jpg",
+    "width": 359,
+    "height": 811
+  },
+  "mobile-contact": {
+    "src": "sections/mobile-contact.jpg",
+    "width": 359,
+    "height": 811
+  },
+  "mobile-home": {
+    "src": "sections/mobile-home.jpg",
+    "width": 359,
+    "height": 811
+  },
+  "mobile-journey": {
+    "src": "sections/mobile-journey.jpg",
+    "width": 359,
+    "height": 811
+  },
+  "mobile-menu": {
+    "src": "sections/mobile-menu.jpg",
+    "width": 374,
+    "height": 843
+  },
+  "mobile-projects": {
+    "src": "sections/mobile-projects.jpg",
+    "width": 359,
+    "height": 811
+  },
+  "mobile-skills": {
+    "src": "sections/mobile-skills.jpg",
+    "width": 359,
+    "height": 811
+  },
+  "tablet-about": {
+    "src": "sections/tablet-about.jpg",
+    "width": 789,
+    "height": 1102
+  },
+  "tablet-contact": {
+    "src": "sections/tablet-contact.jpg",
+    "width": 789,
+    "height": 1102
+  },
+  "tablet-home": {
+    "src": "sections/tablet-home.jpg",
+    "width": 789,
+    "height": 1102
+  },
+  "tablet-journey": {
+    "src": "sections/tablet-journey.jpg",
+    "width": 789,
+    "height": 1102
+  },
+  "tablet-skills": {
+    "src": "sections/tablet-skills.jpg",
+    "width": 789,
+    "height": 1102
+  }
+}

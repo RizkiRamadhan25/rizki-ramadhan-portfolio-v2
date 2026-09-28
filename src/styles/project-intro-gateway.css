@@ -1,0 +1,584 @@
+.project-intro-gateway {
+  position: fixed;
+  z-index: 10040;
+  inset: 0;
+  display: block;
+  overflow: hidden;
+  color: #f7f7f4;
+  background: #090909;
+  opacity: 0;
+  visibility: hidden;
+  isolation: isolate;
+  will-change: transform, opacity;
+  box-shadow: 0 2rem 4rem rgb(0 0 0 / 46%);
+  cursor: text;
+}
+
+html.project-intro-is-active,
+body.project-intro-is-active {
+  overscroll-behavior: none;
+}
+
+.project-intro-copy {
+  position: absolute;
+  z-index: 4;
+  top: clamp(5.2rem, 16vh, 9rem);
+  left: clamp(2rem, 3.35vw, 4rem);
+  width: min(58rem, 72vw);
+  color: #f7f7f4;
+  font-family:
+    "Horizon",
+    "Horizon Extended",
+    "Monument Extended",
+    "Arial Black",
+    Arial,
+    sans-serif;
+  font-size: clamp(2rem, 4.1vw, 4.45rem);
+  font-weight: 900;
+  line-height: 0.96;
+  letter-spacing: -0.045em;
+  text-transform: uppercase;
+  pointer-events: none;
+}
+
+.project-intro-copy__mask {
+  overflow: hidden;
+}
+
+.project-intro-copy__mask > span {
+  display: block;
+  width: max-content;
+  max-width: 100%;
+  will-change: transform, opacity;
+}
+
+/* =========================================================
+   CLEAN INFINITE PROJECT STRIP
+   ========================================================= */
+
+.project-intro-slider {
+  --intro-slide-width: clamp(19rem, 24vw, 28rem);
+  --intro-slide-gap: clamp(1rem, 1.5vw, 1.65rem);
+  --intro-skew: 7.5%;
+  --intro-line-gap: clamp(0.9rem, 1.7vh, 1.25rem);
+  --intro-line-thickness: 3px;
+  --intro-line-space: calc(var(--intro-line-gap) + var(--intro-line-thickness));
+  --intro-dash-color: rgb(255 255 255 / 96%);
+
+  position: absolute;
+  z-index: 3;
+  top: 55%;
+  left: 0;
+  width: 100%;
+  height: calc(
+    clamp(12rem, 29vh, 18.5rem) + var(--intro-line-space) + var(--intro-line-space)
+  );
+  transform: translateY(-10%);
+  overflow: visible;
+  background: #090909;
+  cursor: grab;
+  touch-action: none;
+  user-select: none;
+  -webkit-user-select: none;
+  will-change: clip-path, transform, opacity;
+  isolation: isolate;
+}
+
+
+.project-intro-slider.is-dragging {
+  cursor: grabbing;
+}
+
+
+.project-intro-slider__dash-line {
+  position: absolute;
+  z-index: 6;
+  left: 0;
+  display: block;
+  width: 100%;
+  height: var(--intro-line-thickness);
+  background-image: repeating-linear-gradient(
+    to right,
+    var(--intro-dash-color) 0 14px,
+    transparent 14px 24px
+  );
+  background-repeat: repeat-x;
+  background-position: 0 0;
+  background-size: auto 100%;
+  opacity: 1;
+  pointer-events: none;
+  will-change: background-position;
+}
+
+/*
+ * Keep both dashed rules INSIDE the animated viewport. GSAP animates this
+ * element with clip-path, so placing the rules outside its bounds would clip
+ * them even when overflow is visible. The track is inset to preserve a clean
+ * gap between each rule and the project cards.
+ */
+.project-intro-slider__dash-line--top {
+  top: 0;
+}
+
+.project-intro-slider__dash-line--bottom {
+  bottom: 0;
+}
+
+.project-intro-slider__track {
+  position: absolute;
+  inset: var(--intro-line-space) auto var(--intro-line-space) 0;
+  display: flex;
+  width: max-content;
+  height: auto;
+  will-change: transform;
+}
+
+/*
+ * Each duplicated group includes its trailing gap. This keeps both groups
+ * exactly the same width, so normalizeX() can wrap the track without a jump.
+ */
+.project-intro-slider__group {
+  display: flex;
+  flex: none;
+  height: 100%;
+  align-items: stretch;
+  gap: var(--intro-slide-gap);
+  padding-right: var(--intro-slide-gap);
+  margin: 0;
+}
+
+/*
+ * The card itself is the slanted shape. Because the black slider background
+ * stays visible between cards, every project has a clean, consistent gap like
+ * the reference design instead of relying on overlapping separator bars.
+ */
+.project-intro-card {
+  position: relative;
+  flex: 0 0 var(--intro-slide-width);
+  width: var(--intro-slide-width);
+  height: 100%;
+  margin: 0;
+  overflow: hidden;
+  background: #f4f4f1;
+  clip-path: polygon(var(--intro-skew) 0, 100% 0, calc(100% - var(--intro-skew)) 100%, 0 100%);
+  isolation: isolate;
+}
+
+.project-intro-card__media {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  background: #111;
+}
+
+.project-intro-card__media img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  transform: scale(1.025);
+  filter: grayscale(1) contrast(1.02) brightness(0.92);
+  transition:
+    filter 260ms ease,
+    transform 260ms ease;
+  pointer-events: none;
+  -webkit-user-drag: none;
+  user-select: none;
+}
+
+.project-intro-card:hover .project-intro-card__media img,
+.project-intro-card:focus-within .project-intro-card__media img {
+  filter: grayscale(0) contrast(1) brightness(1);
+  transform: scale(1.04);
+}
+
+
+
+@media (max-width: 900px) {
+  .project-intro-copy {
+    top: 13vh;
+    left: 1.35rem;
+    width: calc(100vw - 2.7rem);
+    font-size: clamp(1.65rem, 7vw, 3.8rem);
+  }
+
+  .project-intro-slider {
+    --intro-slide-width: clamp(16rem, 54vw, 22rem);
+    top: 54%;
+    height: calc(
+      clamp(11rem, 26vh, 15rem) + var(--intro-line-space) + var(--intro-line-space)
+    );
+  }
+}
+
+@media (max-width: 560px) {
+  .project-intro-copy {
+    top: 12vh;
+    font-size: clamp(1.4rem, 8.3vw, 2.4rem);
+    line-height: 1.02;
+  }
+
+  .project-intro-slider {
+    --intro-slide-width: 16rem;
+    top: 55%;
+    height: calc(12rem + var(--intro-line-space) + var(--intro-line-space));
+    transform: translateY(-8%);
+  }
+
+
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .project-intro-gateway,
+  .project-intro-copy__mask > span,
+  .project-intro-slider {
+    transition: none !important;
+    animation: none !important;
+  }
+}
+
+/* =========================================================
+   CLICK-TO-TYPE GRAVITY WORDS
+   ========================================================= */
+
+.project-intro-gravity-layer {
+  position: absolute;
+  z-index: 12;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.project-intro-gravity-word {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: block;
+  max-width: min(70vw, 48rem);
+  margin: 0;
+  color: #f7f7f4;
+  font-family:
+    "Horizon",
+    "Horizon Extended",
+    "Monument Extended",
+    "Arial Black",
+    Arial,
+    sans-serif;
+  font-size: clamp(1.65rem, 3.6vw, 4rem);
+  font-weight: 900;
+  line-height: 0.94;
+  letter-spacing: -0.045em;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-transform: uppercase;
+  white-space: nowrap;
+  text-shadow: 0 0.18rem 0.7rem rgb(0 0 0 / 55%);
+  cursor: grab;
+  pointer-events: auto;
+  touch-action: none;
+  user-select: none;
+  -webkit-user-select: none;
+  will-change: transform;
+}
+
+.project-intro-gravity-word:active {
+  cursor: grabbing;
+}
+
+.project-intro-word-entry {
+  position: absolute;
+  z-index: 16;
+  display: flex;
+  align-items: flex-end;
+  gap: 0.75rem;
+  width: min(24rem, calc(100vw - 2rem));
+  padding: 0.6rem 0.7rem 0.55rem;
+  transform: translate(-50%, -50%);
+  border: 1px solid rgb(255 255 255 / 34%);
+  background: rgb(9 9 9 / 92%);
+  box-shadow: 0 0.85rem 2.4rem rgb(0 0 0 / 42%);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+.project-intro-word-entry input {
+  min-width: 0;
+  flex: 1;
+  padding: 0;
+  border: 0;
+  border-bottom: 1px solid rgb(255 255 255 / 58%);
+  border-radius: 0;
+  outline: 0;
+  background: transparent;
+  color: #f7f7f4;
+  font-family:
+    "Horizon",
+    "Horizon Extended",
+    "Monument Extended",
+    "Arial Black",
+    Arial,
+    sans-serif;
+  font-size: clamp(0.95rem, 1.4vw, 1.3rem);
+  font-weight: 800;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+  caret-color: #f7f7f4;
+}
+
+.project-intro-word-entry input::placeholder {
+  color: rgb(255 255 255 / 36%);
+}
+
+.project-intro-word-entry__actions {
+  display: flex;
+  flex: none;
+  align-items: center;
+  gap: 0.65rem;
+}
+
+.project-intro-word-entry__actions > span,
+.project-intro-word-entry__actions > button {
+  font-family: "Montserrat", Arial, sans-serif;
+  font-size: 0.58rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  white-space: nowrap;
+}
+
+.project-intro-word-entry__actions > span {
+  color: rgb(255 255 255 / 46%);
+}
+
+.project-intro-word-entry__actions > button {
+  padding: 0;
+  border: 0;
+  border-bottom: 1px solid rgb(255 255 255 / 32%);
+  background: transparent;
+  color: rgb(255 255 255 / 62%);
+  cursor: pointer;
+  transition:
+    color 180ms ease,
+    border-color 180ms ease;
+}
+
+.project-intro-word-entry__actions > button:hover,
+.project-intro-word-entry__actions > button:focus-visible {
+  color: #f7f7f4;
+  border-color: rgb(255 255 255 / 88%);
+  outline: none;
+}
+
+@media (max-width: 560px) {
+  .project-intro-gravity-word {
+    font-size: clamp(1.35rem, 7vw, 2.5rem);
+  }
+
+  .project-intro-word-entry {
+    width: min(21rem, calc(100vw - 1.5rem));
+    gap: 0.55rem;
+  }
+
+  .project-intro-word-entry__actions {
+    gap: 0.45rem;
+  }
+}
+
+/* =========================================================
+   INTRO TOOLS + ROPE MODE
+   ========================================================= */
+
+.project-intro-gateway.is-rope-mode {
+  cursor: crosshair;
+}
+
+.project-intro-tools {
+  position: absolute;
+  z-index: 34;
+  top: clamp(1rem, 2.2vh, 1.5rem);
+  right: clamp(1rem, 1.8vw, 1.75rem);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.55rem;
+  color: #f7f7f4;
+  font-family: "Montserrat", Arial, sans-serif;
+  pointer-events: auto;
+}
+
+.project-intro-tools__trigger {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  min-height: 2.55rem;
+  padding: 0.55rem 0.72rem;
+  border: 1px solid rgb(255 255 255 / 22%);
+  background: rgb(9 9 9 / 76%);
+  color: rgb(255 255 255 / 78%);
+  font: inherit;
+  font-size: 0.61rem;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  cursor: pointer;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  transition:
+    color 180ms ease,
+    border-color 180ms ease,
+    background 180ms ease;
+}
+
+.project-intro-tools__trigger svg {
+  width: 1.05rem;
+  height: 1.05rem;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.6;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.project-intro-tools__trigger:hover,
+.project-intro-tools__trigger:focus-visible,
+.project-intro-tools.is-open .project-intro-tools__trigger {
+  border-color: rgb(255 255 255 / 62%);
+  background: rgb(20 20 20 / 92%);
+  color: #f7f7f4;
+  outline: none;
+}
+
+.project-intro-tools__menu {
+  width: min(14.5rem, calc(100vw - 2rem));
+  padding: 0.55rem;
+  border: 1px solid rgb(255 255 255 / 20%);
+  background: rgb(9 9 9 / 94%);
+  box-shadow: 0 1rem 2.8rem rgb(0 0 0 / 48%);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+.project-intro-tools__label {
+  display: block;
+  padding: 0.35rem 0.42rem 0.52rem;
+  color: rgb(255 255 255 / 36%);
+  font-size: 0.55rem;
+  font-weight: 800;
+  letter-spacing: 0.18em;
+}
+
+.project-intro-tools__menu button {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  width: 100%;
+  min-height: 2.75rem;
+  padding: 0.55rem 0.62rem;
+  border: 0;
+  border-top: 1px solid rgb(255 255 255 / 10%);
+  background: transparent;
+  color: rgb(255 255 255 / 58%);
+  text-align: left;
+  cursor: pointer;
+  transition:
+    color 160ms ease,
+    background 160ms ease;
+}
+
+.project-intro-tools__menu button::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 50%;
+  width: 0.18rem;
+  height: 0;
+  transform: translateY(-50%);
+  background: #f7f7f4;
+  transition: height 160ms ease;
+}
+
+.project-intro-tools__menu button > span {
+  font-size: 0.67rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+}
+
+.project-intro-tools__menu button > small {
+  color: rgb(255 255 255 / 28%);
+  font-size: 0.48rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+}
+
+.project-intro-tools__menu button:hover,
+.project-intro-tools__menu button:focus-visible,
+.project-intro-tools__menu button.is-active {
+  background: rgb(255 255 255 / 5%);
+  color: #f7f7f4;
+  outline: none;
+}
+
+.project-intro-tools__menu button.is-active::before {
+  height: 55%;
+}
+
+.project-intro-tools__menu button.is-active > small {
+  color: rgb(255 255 255 / 52%);
+}
+
+.project-intro-tools__status {
+  padding: 0.38rem 0.52rem;
+  border: 1px solid rgb(255 255 255 / 12%);
+  background: rgb(9 9 9 / 72%);
+  color: rgb(255 255 255 / 48%);
+  font-size: 0.5rem;
+  font-weight: 800;
+  letter-spacing: 0.13em;
+  pointer-events: none;
+}
+
+.project-intro-rope-layer {
+  position: absolute;
+  z-index: 11;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  pointer-events: none;
+}
+
+.project-intro-rope {
+  stroke: rgb(247 247 244 / 72%);
+  stroke-width: 2;
+  stroke-linecap: round;
+  vector-effect: non-scaling-stroke;
+  filter: drop-shadow(0 1px 2px rgb(0 0 0 / 70%));
+}
+
+.project-intro-gateway.is-rope-mode .project-intro-gravity-word {
+  cursor: crosshair;
+}
+
+.project-intro-gravity-word.is-rope-selected {
+  color: #fff;
+  text-shadow:
+    0 0 0.2rem rgb(255 255 255 / 70%),
+    0 0 1rem rgb(255 255 255 / 18%),
+    0 0.18rem 0.7rem rgb(0 0 0 / 55%);
+  outline: 1px dashed rgb(255 255 255 / 38%);
+  outline-offset: 0.2em;
+}
+
+@media (max-width: 560px) {
+  .project-intro-tools__trigger > span {
+    display: none;
+  }
+
+  .project-intro-tools__trigger {
+    min-width: 2.6rem;
+    justify-content: center;
+    padding-inline: 0.65rem;
+  }
+}

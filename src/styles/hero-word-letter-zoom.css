@@ -1,0 +1,34 @@
+/* Word-local letter zoom
+   Only the word under the pointer reacts. Characters nearest the cursor grow
+   the most, producing a small optical lens effect without shifting layout. */
+
+.hero-word-zoom__word {
+  display: inline-block;
+  white-space: nowrap;
+}
+
+.hero-word-zoom__char {
+  display: inline-block;
+  transform: translateZ(0) scale(1);
+  transform-origin: 50% 68%;
+  will-change: transform;
+}
+
+/* Keep the shared hero name's original typography/layout intact while allowing
+   its individual letters to animate. */
+.hero-cinematic-name__first.hero-word-zoom__word,
+.hero-cinematic-name__last.hero-word-zoom__word {
+  vertical-align: baseline;
+}
+
+@media (hover: none), (pointer: coarse), (max-width: 900px) {
+  .hero-word-zoom__char {
+    transform: none !important;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-word-zoom__char {
+    transform: none !important;
+  }
+}

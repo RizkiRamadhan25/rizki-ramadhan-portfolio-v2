@@ -1,0 +1,237 @@
+/* --------------------------------------------------------------------------
+   About — normal scroll + progressive fade
+   - section tidak dipin
+   - halaman terus menuju section berikutnya
+   - title fade in per baris saat scroll
+   - body copy fade in sebagai satu blok
+   - tidak ada translate-y / animasi naik
+   -------------------------------------------------------------------------- */
+
+.about-luke {
+  position: relative;
+  min-height: 100svh;
+  overflow: clip;
+  background: #000;
+  color: #f4f2ed;
+  font-family:
+    "Montserrat",
+    "Helvetica Neue",
+    Arial,
+    sans-serif;
+  isolation: isolate;
+}
+
+.about-luke__stage {
+  position: relative;
+  width: 100%;
+  min-height: 100svh;
+  overflow: hidden;
+  background: #000;
+}
+
+.about-luke__noise {
+  display: none;
+}
+
+.about-luke__glow {
+  position: absolute;
+  z-index: 0;
+  top: -25%;
+  right: -18%;
+  width: min(95vw, 92rem);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  pointer-events: none;
+  background: radial-gradient(circle, rgb(228 42 34 / 72%) 0%, rgb(133 20 27 / 44%) 28%, transparent 68%);
+  filter: blur(66px);
+  opacity: 0.65;
+  transform-origin: 50% 50%;
+}
+
+.about-luke__title {
+  position: absolute;
+  z-index: 2;
+  top: clamp(4.8rem, 8vh, 7.2rem);
+  left: clamp(2rem, 5.4vw, 6.4rem);
+  width: min(66vw, 68rem);
+  margin: 0;
+  font-size: clamp(3.35rem, 5.75vw, 7rem);
+  font-weight: 400;
+  line-height: 1.03;
+  letter-spacing: -0.055em;
+  text-wrap: balance;
+}
+
+.about-luke__title-line {
+  display: block;
+  padding-bottom: 0.05em;
+}
+
+.about-luke__title-line-inner {
+  display: block;
+  will-change: opacity, filter;
+}
+
+.about-luke__title-line:last-child .about-luke__title-line-inner {
+  font-family: "Instrument Serif", Georgia, serif;
+  font-style: italic;
+  font-weight: 400;
+  letter-spacing: -0.035em;
+}
+
+.about-luke__copy-wrap {
+  position: absolute;
+  z-index: 4;
+  left: clamp(5rem, 19.5vw, 24rem);
+  bottom: clamp(7.2rem, 12.5vh, 11rem);
+  width: min(38rem, 39vw);
+}
+
+.about-luke__copy {
+  margin: 0;
+  font-size: clamp(1.2rem, 1.82vw, 1.95rem);
+  font-weight: 400;
+  line-height: 1.43;
+  letter-spacing: -0.03em;
+  color: rgb(249 247 242 / 96%);
+  will-change: opacity, filter;
+}
+
+.about-luke__portrait {
+  position: absolute;
+  z-index: 3;
+  right: clamp(1.25rem, 3.2vw, 4.5rem);
+  bottom: -0.4rem;
+  width: clamp(28rem, 38vw, 47rem);
+  height: min(83vh, 59rem);
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  pointer-events: none;
+  will-change: opacity, filter, transform;
+  transform-origin: 50% 100%;
+}
+
+.about-luke__portrait::after {
+  position: absolute;
+  z-index: -1;
+  content: "";
+  left: 16%;
+  right: 12%;
+  bottom: 0;
+  height: 22%;
+  border-radius: 50%;
+  background: rgb(0 0 0 / 62%);
+  filter: blur(45px);
+  transform: translateY(45%);
+}
+
+.about-luke__portrait img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: 50% 100%;
+  user-select: none;
+  -webkit-user-drag: none;
+  filter: drop-shadow(0 24px 28px rgb(0 0 0 / 26%));
+}
+
+.about-luke__play {
+  display: none !important;
+}
+
+@media (max-width: 1180px) {
+  .about-luke__title {
+    width: 69vw;
+    font-size: clamp(3.2rem, 6.4vw, 6.4rem);
+  }
+
+  .about-luke__portrait {
+    right: -2.5rem;
+    width: clamp(29rem, 45vw, 42rem);
+  }
+
+  .about-luke__copy-wrap {
+    left: 11vw;
+    width: min(35rem, 42vw);
+  }
+}
+
+@media (max-width: 900px) {
+  .about-luke__stage {
+    min-height: 60rem;
+  }
+
+  .about-luke__title {
+    top: 5.5rem;
+    left: 1.5rem;
+    width: calc(100% - 3rem);
+    font-size: clamp(3rem, 9.5vw, 5rem);
+    line-height: 1.03;
+  }
+
+  .about-luke__portrait {
+    right: -2rem;
+    bottom: 0;
+    width: min(78vw, 34rem);
+    height: 56%;
+  }
+
+  .about-luke__copy-wrap {
+    left: 1.5rem;
+    bottom: 5.5rem;
+    width: min(27rem, 55vw);
+  }
+
+  .about-luke__copy {
+    font-size: clamp(1.05rem, 3vw, 1.38rem);
+  }
+}
+
+@media (max-width: 640px) {
+  .about-luke__glow {
+    top: 17%;
+    right: -85%;
+    width: 180vw;
+    filter: blur(42px);
+  }
+  .about-luke__stage {
+    min-height: 55rem;
+  }
+
+  .about-luke__title {
+    top: 4.8rem;
+    font-size: clamp(2.45rem, 11.5vw, 3.65rem);
+    letter-spacing: -0.05em;
+  }
+
+  .about-luke__portrait {
+    right: -5rem;
+    width: 30rem;
+    height: 51%;
+  }
+
+  .about-luke__copy-wrap {
+    left: 1.35rem;
+    right: 1.35rem;
+    bottom: 4rem;
+    width: auto;
+    max-width: 19rem;
+  }
+
+  .about-luke__copy {
+    font-size: 1rem;
+    line-height: 1.45;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .about-luke__title-line-inner,
+  .about-luke__copy,
+  .about-luke__portrait {
+    opacity: 1 !important;
+    filter: none !important;
+    transform: none !important;
+  }
+}

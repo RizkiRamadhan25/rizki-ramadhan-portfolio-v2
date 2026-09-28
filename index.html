@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0"
+    />
+
+    <meta
+      name="description"
+      content="Portfolio website of Rizki Ramadhan, an Informatics Engineering student."
+    />
+
+    <meta
+      name="author"
+      content="Rizki Ramadhan"
+    />
+
+    <meta
+      name="robots"
+      content="index, follow"
+    />
+
+    <meta
+      name="theme-color"
+      content="#edeae2"
+    />
+    <script>
+      try {
+        if (localStorage.getItem("rizki-portfolio-theme") === "dark") {
+          document.documentElement.dataset.theme = "dark";
+          document.querySelector('meta[name="theme-color"]').content = "#171715";
+        }
+      } catch { /* Keep the light theme when storage is unavailable. */ }
+    </script>
+
+    <meta
+      property="og:type"
+      content="website"
+    />
+
+    <meta
+      property="og:title"
+      content="Rizki Ramadhan | Portfolio"
+    />
+
+    <meta
+      property="og:description"
+      content="The portfolio of Rizki Ramadhan, an Informatics Engineering student."
+    />
+
+    <meta
+      property="og:url"
+      content="https://rizki-ramadhan-portfolio.vercel.app/"
+    />
+
+    <meta
+      property="og:image"
+      content="https://rizki-ramadhan-portfolio.vercel.app/images/og-cover.png"
+    />
+
+    <meta
+      name="twitter:card"
+      content="summary_large_image"
+    />
+
+    <meta
+      name="twitter:title"
+      content="Rizki Ramadhan | Portfolio"
+    />
+
+    <meta
+      name="twitter:description"
+      content="The portfolio of Rizki Ramadhan, an Informatics Engineering student."
+    />
+
+    <meta
+      name="twitter:image"
+      content="https://rizki-ramadhan-portfolio.vercel.app/images/og-cover.png"
+    />
+
+    <link
+      rel="canonical"
+      href="https://rizki-ramadhan-portfolio.vercel.app/"
+    />
+
+    <link
+      rel="icon"
+      type="image/svg+xml"
+      href="/rr-favicon.svg"
+    />
+
+    <title>
+      Rizki Ramadhan | Portfolio
+    </title>
+
+  </head>
+
+  <body>
+    <div id="root"></div>
+
+    <script
+      type="module"
+      src="/src/main.jsx"
+    ></script>
+  </body>
+</html>

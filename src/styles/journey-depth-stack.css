@@ -1,0 +1,569 @@
+.journey-depth {
+  position: relative;
+  z-index: 1;
+  min-height: 100svh;
+  scroll-margin-top: 5rem;
+  background: #000000;
+  color: #f4f6fb;
+  overflow: clip;
+  font-family: "Montserrat", var(--font-body), sans-serif;
+}
+
+.journey-depth__scene {
+  position: relative;
+  width: 100%;
+  height: 100svh;
+  min-height: 42rem;
+  overflow: hidden;
+  isolation: isolate;
+  perspective: 1320px;
+  perspective-origin: 50% 46%;
+  background: #000000;
+}
+
+.journey-depth__canvas,
+.journey-depth__vignette,
+.journey-depth__grain {
+  position: absolute;
+  inset: 0;
+}
+
+.journey-depth__canvas {
+  z-index: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0.94;
+}
+
+.journey-depth__vignette {
+  z-index: 1;
+  pointer-events: none;
+  background:
+    radial-gradient(circle at 50% 46%, transparent 24%, rgb(0 0 0 / 14%) 58%, rgb(0 0 0 / 88%) 100%),
+    linear-gradient(180deg, rgb(0 0 0 / 24%), transparent 20%, transparent 76%, rgb(0 0 0 / 52%));
+}
+
+.journey-depth__grain {
+  z-index: 2;
+  opacity: 0.045;
+  pointer-events: none;
+  background-image:
+    repeating-radial-gradient(
+      circle at 17% 13%,
+      rgb(255 255 255 / 28%) 0 0.4px,
+      transparent 0.5px 2.5px
+    );
+  background-size: 8px 8px;
+  mix-blend-mode: soft-light;
+}
+
+.journey-depth__vanish {
+  position: absolute;
+  z-index: 2;
+  top: 46%;
+  left: 50%;
+  display: grid;
+  width: 10rem;
+  height: 10rem;
+  place-items: center;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+}
+
+.journey-depth__vanish > span {
+  position: absolute;
+  inset: 0;
+  border: 1px solid rgb(173 190 255 / 12%);
+  border-radius: 50%;
+  box-shadow:
+    inset 0 0 3rem rgb(135 155 238 / 6%),
+    0 0 6rem rgb(98 120 220 / 8%);
+}
+
+
+.journey-depth__connectors {
+  position: absolute;
+  z-index: 3;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  pointer-events: none;
+}
+
+.journey-depth__connector-base,
+.journey-depth__connector-glow,
+.journey-depth__connector-progress {
+  fill: none;
+  vector-effect: non-scaling-stroke;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.journey-depth__connector-base {
+  stroke: rgb(197 209 246 / 13%);
+  stroke-width: 1.1;
+}
+
+.journey-depth__connector-glow {
+  stroke: rgb(126 154 255 / 34%);
+  stroke-width: 7;
+  opacity: 0.72;
+  filter: url("#journey-connector-glow");
+}
+
+.journey-depth__connector-progress {
+  stroke: url("#journey-connector-gradient");
+  stroke: rgb(244 248 255 / 96%);
+  stroke-width: 2;
+  filter:
+    drop-shadow(0 0 0.38rem rgb(193 211 255 / 70%))
+    drop-shadow(0 0 1rem rgb(115 144 255 / 32%));
+}
+
+.journey-depth__connector-indicator-halo,
+.journey-depth__connector-indicator-core {
+  pointer-events: none;
+  vector-effect: non-scaling-stroke;
+}
+
+.journey-depth__connector-indicator-halo {
+  fill: rgb(126 153 255 / 22%);
+  stroke: rgb(167 190 255 / 48%);
+  stroke-width: 1;
+  filter: url("#journey-indicator-glow");
+}
+
+.journey-depth__connector-indicator-core {
+  fill: #ffffff;
+  stroke: rgb(205 218 255 / 85%);
+  stroke-width: 0.8;
+  filter:
+    drop-shadow(0 0 0.35rem rgb(255 255 255 / 95%))
+    drop-shadow(0 0 1.1rem rgb(128 155 255 / 88%));
+}
+
+.journey-depth__deck {
+  position: absolute;
+  z-index: 4;
+  inset: 0;
+  transform-style: preserve-3d;
+  transform-origin: 50% 46%;
+  will-change: transform;
+}
+
+.journey-depth__stage {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: min(35rem, 38vw);
+  transform-style: preserve-3d;
+  backface-visibility: hidden;
+  will-change: transform, opacity, filter;
+  pointer-events: none;
+  text-shadow: 0 0 2rem rgb(0 0 0 / 24%);
+}
+
+.journey-depth__stage-top {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 1rem;
+  margin-bottom: 0.85rem;
+}
+
+.journey-depth__index {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  color: #ffffff;
+  font-family: "Montserrat", var(--font-body), sans-serif;
+  font-size: 0.57rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+}
+
+.journey-depth__index i {
+  width: 3.1rem;
+  height: 1px;
+  background: rgb(211 222 255 / 16%);
+}
+
+.journey-depth__period {
+  display: inline-block;
+  color: #ff2d20;
+  font-family: "Montserrat", var(--font-body), sans-serif;
+  font-size: 0.62rem;
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: 0.20em;
+  text-transform: uppercase;
+}
+
+.journey-depth__stage h3 {
+  max-width: 10.5ch;
+  margin: 0;
+  overflow: hidden;
+  font-family: "Montserrat", var(--font-body), sans-serif;
+  font-size: clamp(2.65rem, 4.5vw, 5.2rem);
+  font-weight: 680;
+  line-height: 0.9;
+  letter-spacing: -0.062em;
+  text-wrap: balance;
+}
+
+.journey-depth__word {
+  display: inline-block;
+  will-change: transform, opacity;
+}
+
+.journey-depth__description {
+  max-width: 36rem;
+  margin: 1.1rem 0 0;
+  color: rgb(206 214 231 / 68%);
+  font-size: clamp(0.82rem, 1vw, 0.98rem);
+  line-height: 1.68;
+}
+
+.journey-depth__meta {
+  margin-top: 0.9rem;
+}
+
+.journey-depth__status {
+  display: inline-block;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  backdrop-filter: none;
+  color: rgb(217 224 240 / 78%);
+  font-family: "Montserrat", var(--font-body), sans-serif;
+  font-size: 0.62rem;
+  font-weight: 650;
+  line-height: 1.35;
+}
+
+
+.journey-depth__status--completed {
+  color: rgb(99 226 184);
+}
+
+.journey-depth__status--in-progress,
+.journey-depth__status--inprogress,
+.journey-depth__status--current {
+  color: #ffffff;
+}
+
+.journey-depth__status--upcoming {
+  color: rgb(198 204 218 / 72%);
+}
+
+.journey-depth__highlights {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.38rem 1rem;
+  margin: 1rem 0 0;
+  padding: 0.9rem 0 0;
+  border-top: 1px solid rgb(255 255 255 / 9%);
+  list-style: none;
+}
+
+.journey-depth__highlights li {
+  display: grid;
+  grid-template-columns: 1.3rem 1fr;
+  gap: 0.35rem;
+  min-width: 0;
+}
+
+.journey-depth__highlights li > span {
+  padding-top: 0.08rem;
+  color: #ffffff;
+  font-size: 0.52rem;
+  font-weight: 750;
+}
+
+.journey-depth__highlights p {
+  margin: 0;
+  color: rgb(207 215 231 / 56%);
+  font-size: 0.66rem;
+  line-height: 1.42;
+}
+
+.journey-depth__chrome {
+  position: absolute;
+  z-index: 10;
+  inset: 0;
+  pointer-events: none;
+  color: rgb(214 222 239 / 40%);
+  font-size: 0.53rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.journey-depth__brand {
+  position: absolute;
+  top: clamp(1.4rem, 2.8vw, 2.4rem);
+  left: clamp(1.4rem, 2.8vw, 2.8rem);
+}
+
+
+.journey-depth__progress {
+  position: absolute;
+  bottom: clamp(1.4rem, 2.6vw, 2.3rem);
+  left: clamp(1.4rem, 2.8vw, 2.8rem);
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+}
+
+.journey-depth__progress > span {
+  color: #ffffff;
+  font-family: "Montserrat", var(--font-body), sans-serif;
+}
+
+.journey-depth__progress > div {
+  position: relative;
+  width: clamp(4.2rem, 7vw, 7rem);
+  height: 1px;
+  overflow: hidden;
+  background: rgb(211 221 246 / 12%);
+}
+
+.journey-depth__progress i {
+  position: absolute;
+  inset: 0;
+  display: block;
+  transform: scaleX(0.025);
+  transform-origin: left center;
+  background: linear-gradient(90deg, #8799ff, #81d2ea);
+  box-shadow: 0 0 0.7rem rgb(137 155 255 / 30%);
+}
+
+.journey-depth__chrome > p {
+  position: absolute;
+  right: clamp(1.4rem, 2.8vw, 2.8rem);
+  bottom: clamp(1.4rem, 2.6vw, 2.3rem);
+  margin: 0;
+}
+
+.journey-depth--reduced {
+  padding: clamp(6rem, 10vw, 9rem) clamp(1.25rem, 6vw, 5rem);
+}
+
+.journey-depth--reduced > header {
+  max-width: 56rem;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.journey-depth--reduced > header > p {
+  color: #9ca8ff;
+  font-size: 0.66rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+
+.journey-depth--reduced > header h2 {
+  margin: 1rem 0;
+  font-size: clamp(2.5rem, 6vw, 5rem);
+}
+
+.journey-depth--reduced > header span {
+  color: rgb(205 213 232 / 68%);
+  line-height: 1.7;
+}
+
+.journey-depth__reduced-list {
+  display: grid;
+  gap: 1rem;
+  width: min(68rem, 100%);
+  margin: 3rem auto 0;
+}
+
+.journey-depth__reduced-list article {
+  padding: 1.5rem;
+  border: 1px solid rgb(255 255 255 / 10%);
+  border-radius: 1.25rem;
+  background: rgb(255 255 255 / 3%);
+}
+
+.journey-depth__reduced-list article > span {
+  color: #ff2d20;
+  font-family: "Montserrat", var(--font-body), sans-serif;
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.journey-depth__reduced-list h3 {
+  margin: 0.55rem 0 0;
+  font-size: 1.7rem;
+}
+
+.journey-depth__reduced-list p {
+  margin: 0.75rem 0 0;
+  color: rgb(205 213 232 / 68%);
+  line-height: 1.65;
+}
+
+@media (max-width: 980px) {
+  .journey-depth__stage {
+    width: min(34rem, calc(100% - 3rem));
+  }
+
+  .journey-depth__stage h3 {
+    max-width: 11ch;
+    font-size: clamp(2.6rem, 8vw, 4.7rem);
+  }
+
+  .journey-depth__connectors {
+    opacity: 0.72;
+  }
+}
+
+@media (max-width: 700px) {
+  .journey-depth__scene {
+    min-height: 39rem;
+    perspective: 960px;
+  }
+
+  .journey-depth__stage {
+    width: calc(100% - 2.5rem);
+  }
+
+  .journey-depth__stage h3 {
+    max-width: 10.5ch;
+    font-size: clamp(2.2rem, 12vw, 4rem);
+  }
+
+  .journey-depth__description {
+    max-width: 28rem;
+    font-size: 0.8rem;
+    line-height: 1.58;
+  }
+
+  .journey-depth__highlights {
+    grid-template-columns: 1fr;
+    max-width: 26rem;
+  }
+
+  .journey-depth__highlights li:nth-child(n + 4) {
+    display: none;
+  }
+
+  .journey-depth__connectors {
+    opacity: 0.5;
+  }
+
+  .journey-depth__brand,
+  .journey-depth__chrome > p {
+    display: none;
+  }
+
+
+  .journey-depth__progress {
+    right: 1.25rem;
+    bottom: 1.15rem;
+    left: 1.25rem;
+  }
+
+  .journey-depth__progress > div {
+    flex: 1;
+    width: auto;
+  }
+}
+
+@media (hover: none), (pointer: coarse) {
+}
+
+
+/* Journey typography normalization */
+.journey-depth,
+.journey-depth button,
+.journey-depth input,
+.journey-depth textarea,
+.journey-depth select {
+  font-family: "Montserrat", var(--font-body), sans-serif;
+}
+
+.journey-depth__index,
+.journey-depth__period,
+.journey-depth__stage h3,
+.journey-depth__description,
+.journey-depth__status,
+.journey-depth__highlights,
+.journey-depth__chrome,
+.journey-depth__reduced-list {
+  font-family: "Montserrat", var(--font-body), sans-serif;
+}
+
+.journey-depth__index,
+.journey-depth__highlights li > span,
+.journey-depth__progress > span {
+  color: #ffffff;
+}
+
+
+/* Journey v3 — clean black background, no star particles */
+.journey-depth__canvas,
+.journey-depth__grain {
+  display: none !important;
+}
+
+.journey-depth__period {
+  color: #ff2d20;
+  font-family: "Montserrat", var(--font-body), sans-serif;
+}
+
+.journey-depth__reduced-list article > span {
+  color: #ff2d20;
+  font-family: "Montserrat", var(--font-body), sans-serif;
+}
+
+
+/* Journey v4 — one continuous glowing connector */
+.journey-depth__connector-glow,
+.journey-depth__connector-progress {
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.journey-depth__connector-indicator-halo,
+.journey-depth__connector-indicator-core {
+  transform-box: fill-box;
+  transform-origin: center;
+}
+
+/* Journey-specific duplicate brand removed from markup. */
+.journey-depth__brand {
+  display: none !important;
+}
+
+
+/* Journey v5 — bottom progress/chrome removed */
+.journey-depth__chrome {
+  display: none !important;
+}
+
+
+/* Journey v6 — focused stage presentation */
+.journey-depth__stage {
+  top: 49%;
+}
+
+.journey-depth__stage-top {
+  justify-content: flex-start;
+}
+
+.journey-depth__period {
+  color: #ff2d20;
+  font-family: "Montserrat", var(--font-body), sans-serif;
+}
+
+/* Legacy 01 — 04 index is intentionally removed from the JSX. */
+.journey-depth__index {
+  display: none !important;
+}

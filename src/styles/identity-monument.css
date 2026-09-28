@@ -1,0 +1,122 @@
+/*
+ * Identity typography + persistent name morph
+ * Imported after the existing styles so old experiments cannot override it.
+ *
+ * Monument is a commercial typeface. This stylesheet intentionally does not
+ * bundle or redistribute font files. If Monument/Monument Extended is
+ * installed on the system (or already licensed and loaded by the project), it
+ * will be used. Otherwise the stack falls back to a heavy geometric sans.
+ */
+
+:root {
+  --font-monument:
+    "Monument Extended",
+    "Monument Extended Ultrabold",
+    "Monument",
+    "Monument Grotesk",
+    "Arial Black",
+    "Arial Narrow Bold",
+    Arial,
+    sans-serif;
+}
+
+.monument-identity {
+  font-family: var(--font-monument) !important;
+  font-synthesis: none !important;
+  font-style: normal !important;
+  font-weight: 800 !important;
+  letter-spacing: -0.055em !important;
+}
+
+/* Loader corner information */
+.intro-loader-meta {
+  font-family: var(--font-monument) !important;
+  font-synthesis: none !important;
+  font-weight: 800 !important;
+  letter-spacing: -0.055em !important;
+}
+
+/* HELLO / role visual language */
+.hero-hello-role-band h1 {
+  font-family: var(--font-monument) !important;
+  font-synthesis: none !important;
+  font-weight: 800 !important;
+  letter-spacing: -0.055em !important;
+}
+
+/*
+ * Single Rizki Ramadhan instance for the entire website.
+ * It begins at the loader's bottom-right corner, morphs/flies to this fixed
+ * top-left anchor, then remains there through About, Skills, Projects,
+ * Journey, and Contact.
+ */
+.portfolio-persistent-name {
+  position: fixed !important;
+  z-index: 6200 !important;
+  top: clamp(1.35rem, 2.6vh, 1.9rem) !important;
+  left: clamp(1.45rem, 3vw, 2.8rem) !important;
+  width: max-content;
+  max-width: calc(100vw - 7rem);
+  margin: 0 !important;
+  padding: 0 !important;
+  color: #f6f4ef !important;
+  font-family: var(--font-monument) !important;
+  font-size: clamp(0.95rem, 1.28vw, 1.18rem) !important;
+  font-synthesis: none !important;
+  font-weight: 800 !important;
+  line-height: 1 !important;
+  letter-spacing: -0.055em !important;
+  white-space: nowrap;
+  pointer-events: none;
+  opacity: 0;
+  visibility: hidden;
+  will-change: transform, opacity;
+  isolation: isolate;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+.portfolio-persistent-name.is-settled {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* The old hero-local labels are obsolete; the persistent identity replaces them. */
+.hero-hello-signature,
+.hero-photo-signature {
+  display: none !important;
+}
+
+/* Hide the persistent label behind the modal navigation while it is open. */
+html.portfolio-menu-open .portfolio-persistent-name,
+body.portfolio-menu-open .portfolio-persistent-name {
+  opacity: 0 !important;
+  visibility: hidden !important;
+}
+
+/* Keep navigation identity aligned with the same typography. */
+.portfolio-menu-heading strong,
+.portfolio-menu-footer {
+  font-family: var(--font-monument) !important;
+  font-synthesis: none !important;
+}
+
+/* Responsive spacing */
+@media (max-width: 720px) {
+  .portfolio-persistent-name {
+    top: 1.15rem !important;
+    left: 1.15rem !important;
+    max-width: calc(100vw - 5.5rem);
+    font-size: 0.9rem !important;
+  }
+
+  .intro-loader-meta {
+    font-size: clamp(0.72rem, 3.2vw, 0.95rem) !important;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .portfolio-persistent-name {
+    will-change: auto;
+  }
+}

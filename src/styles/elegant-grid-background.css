@@ -1,0 +1,219 @@
+/* ==========================================================================\n   Global elegant grid background\n   A restrained technical grid that runs continuously from the loader/intro\n   through every portfolio section without competing with the content.\n   ========================================================================== */
+
+:root {
+  --portfolio-grid-base: #070707;
+  --portfolio-grid-minor: rgb(255 255 255 / 4.6%);
+  --portfolio-grid-major: rgb(255 255 255 / 8%);
+  --portfolio-grid-dot: rgb(255 255 255 / 12%);
+  --portfolio-grid-minor-size: 64px;
+  --portfolio-grid-major-size: 256px;
+}
+
+html,
+body {
+  background-color: var(--portfolio-grid-base) !important;
+}
+
+body {
+  /*
+   * Layer order:
+   * 1. extremely soft ambient light so the page is not flat black
+   * 2. tiny anchor points at the major grid intersections
+   * 3. 256px major grid
+   * 4. 64px minor grid
+   * 5. near-black base
+   */
+  background-image:
+    radial-gradient(circle at 18% 7%, rgb(255 255 255 / 2.7%), transparent 30rem),
+    radial-gradient(circle at 86% 64%, rgb(214 64 55 / 2.2%), transparent 28rem),
+    radial-gradient(circle at 1px 1px, var(--portfolio-grid-dot) 1px, transparent 1.25px),
+    linear-gradient(var(--portfolio-grid-major) 1px, transparent 1px),
+    linear-gradient(90deg, var(--portfolio-grid-major) 1px, transparent 1px),
+    linear-gradient(var(--portfolio-grid-minor) 1px, transparent 1px),
+    linear-gradient(90deg, var(--portfolio-grid-minor) 1px, transparent 1px),
+    linear-gradient(180deg, #070707 0%, #050505 100%) !important;
+  background-repeat: no-repeat, no-repeat, repeat, repeat, repeat, repeat, repeat, no-repeat;
+  background-size:
+    auto,
+    auto,
+    var(--portfolio-grid-major-size) var(--portfolio-grid-major-size),
+    var(--portfolio-grid-major-size) var(--portfolio-grid-major-size),
+    var(--portfolio-grid-major-size) var(--portfolio-grid-major-size),
+    var(--portfolio-grid-minor-size) var(--portfolio-grid-minor-size),
+    var(--portfolio-grid-minor-size) var(--portfolio-grid-minor-size),
+    auto;
+  background-position: center top, center, 0 0, 0 0, 0 0, 0 0, 0 0, center;
+  background-attachment: fixed;
+}
+
+/* The old global pseudo grid is no longer needed; the body now owns one\n * continuous aligned grid, which avoids visible resets between sections. */
+body::before {
+  display: none !important;
+}
+
+
+/* --------------------------------------------------------------------------
+   Root / Tailwind canvas fix
+   --------------------------------------------------------------------------
+   MainLayout uses Tailwind's `bg-background` on the full-page wrapper. That
+   opaque layer sits above the body background, so the body grid cannot be
+   seen even though it is rendered correctly. Keep all structural canvases
+   transparent so the single body grid remains continuous across the site.
+*/
+
+#root,
+#smooth-wrapper,
+#smooth-content,
+.min-h-screen.bg-background {
+  background-color: transparent !important;
+  background-image: none !important;
+}
+
+/* --------------------------------------------------------------------------
+   Portfolio sections
+   --------------------------------------------------------------------------
+   Most of these sections previously painted their own opaque black layer.
+   Making only those canvas layers transparent lets the body grid continue
+   uninterrupted from Home to Contact while preserving every foreground FX.
+*/
+
+.hero-new-opening,
+.learning-hero,
+.learning-hero__background,
+.about-luke,
+.about-luke__stage,
+.journey-depth,
+.journey-depth__scene,
+.projects-horizon-section.projects-section,
+.skills-wave,
+.skills-wave__stage,
+.contact-footer {
+  background-color: transparent !important;
+}
+
+.learning-hero__background,
+.about-luke__stage,
+.journey-depth__scene,
+.projects-horizon-section.projects-section,
+.skills-wave__stage,
+.contact-footer {
+  background-image: none !important;
+}
+
+/* Keep the original faint warm ambience in the hero, but remove its opaque
+ * black base so the technical grid remains visible beneath it. */
+.hero-new-opening__background {
+  background:
+    radial-gradient(circle at 52% 72%, rgb(77 0 0 / 12%), transparent 36rem) !important;
+}
+
+/* The large text band should read as part of the same page rather than a
+ * separate black rectangle. */
+.hero-hello-role-band {
+  background: rgb(7 7 7 / 62%) !important;
+  backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(2px);
+}
+
+/* --------------------------------------------------------------------------
+   Loading scene + project intro
+   -------------------------------------------------------------------------- */
+
+.intro-loader--clean,
+.intro-loader--clean .intro-tear-backdrop {
+  background-color: var(--portfolio-grid-base) !important;
+  background-image:
+    radial-gradient(circle at 18% 7%, rgb(255 255 255 / 2.7%), transparent 30rem),
+    radial-gradient(circle at 86% 64%, rgb(214 64 55 / 2.2%), transparent 28rem),
+    radial-gradient(circle at 1px 1px, var(--portfolio-grid-dot) 1px, transparent 1.25px),
+    linear-gradient(var(--portfolio-grid-major) 1px, transparent 1px),
+    linear-gradient(90deg, var(--portfolio-grid-major) 1px, transparent 1px),
+    linear-gradient(var(--portfolio-grid-minor) 1px, transparent 1px),
+    linear-gradient(90deg, var(--portfolio-grid-minor) 1px, transparent 1px),
+    linear-gradient(180deg, #070707 0%, #050505 100%) !important;
+  background-repeat: no-repeat, no-repeat, repeat, repeat, repeat, repeat, repeat, no-repeat;
+  background-size:
+    auto,
+    auto,
+    var(--portfolio-grid-major-size) var(--portfolio-grid-major-size),
+    var(--portfolio-grid-major-size) var(--portfolio-grid-major-size),
+    var(--portfolio-grid-major-size) var(--portfolio-grid-major-size),
+    var(--portfolio-grid-minor-size) var(--portfolio-grid-minor-size),
+    var(--portfolio-grid-minor-size) var(--portfolio-grid-minor-size),
+    auto;
+  background-position: center top, center, 0 0, 0 0, 0 0, 0 0, 0 0, center;
+}
+
+/* The project intro intentionally stays pure black. It works as a solid
+ * transitional panel above the gridded Home canvas. */
+.project-intro-gateway {
+  background-color: #090909 !important;
+  background-image: none !important;
+}
+
+.project-intro-slider {
+  background: #090909 !important;
+}
+
+/* A very soft edge treatment gives the grid more depth without turning it
+ * into a bright sci-fi background. */
+.hero-new-opening::after,
+.learning-hero::after,
+.about-luke::after,
+.journey-depth::after,
+.projects-horizon-section.projects-section::after,
+.skills-wave::after,
+.contact-footer::after {
+  position: absolute;
+  z-index: 0;
+  inset: 0;
+  content: "";
+  pointer-events: none;
+  background:
+    linear-gradient(90deg, rgb(0 0 0 / 18%), transparent 14%, transparent 86%, rgb(0 0 0 / 18%)),
+    radial-gradient(ellipse at center, transparent 54%, rgb(0 0 0 / 16%) 100%);
+}
+
+/* Preserve foreground stacking above the subtle vignette.
+ * Contact is intentionally excluded here. Its direct children use a mix of
+ * absolute and relative positioning (smoke, marquee, footer meta, portrait).
+ * Forcing every direct child to position: relative breaks the contact layout.
+ */
+.hero-new-opening > *,
+.learning-hero > *,
+.about-luke > *,
+.journey-depth > *,
+.projects-horizon-section.projects-section > *,
+.skills-wave > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* Contact already owns its precise layer order in contact-footer-gsap.css:
+ * smoke 3 -> marquee 4 -> content/portrait 5-7 -> actions/meta 8+.
+ * Keep those positions untouched while the grid remains visible behind it.
+ */
+.contact-footer__smoke,
+.contact-footer__marquee,
+.contact-footer__meta {
+  position: absolute;
+}
+
+@media (max-width: 760px) {
+  :root {
+    --portfolio-grid-minor-size: 52px;
+    --portfolio-grid-major-size: 208px;
+  }
+
+  body {
+    /* Slightly quieter on small screens so the typography stays dominant. */
+    --portfolio-grid-minor: rgb(255 255 255 / 3.8%);
+    --portfolio-grid-major: rgb(255 255 255 / 6.6%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  body {
+    background-attachment: scroll;
+  }
+}

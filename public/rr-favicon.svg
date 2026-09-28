@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="RR logo">
+  <rect width="64" height="64" rx="13" fill="#26221e"/>
+  <text x="4" y="45" fill="#edeae2" font-family="Arial, Helvetica, sans-serif" font-size="38" font-weight="900" letter-spacing="-7">RR</text>
+  <circle cx="54" cy="45" r="5" fill="#f04b2c"/>
+</svg>

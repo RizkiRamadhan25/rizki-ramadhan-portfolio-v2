@@ -1,0 +1,521 @@
+.journey-immersive {
+  position: relative;
+  z-index: 1;
+  min-height: 100svh;
+  scroll-margin-top: 5.5rem;
+  background:
+    radial-gradient(circle at 50% 48%, rgb(35 42 62 / 26%), transparent 46%),
+    #06080d;
+  color: #f3f5fb;
+  overflow: clip;
+}
+
+.journey-immersive__scene {
+  position: relative;
+  width: 100%;
+  height: 100svh;
+  min-height: 42rem;
+  overflow: hidden;
+  isolation: isolate;
+  perspective: 1400px;
+  background: #06080d;
+}
+
+.journey-immersive__world {
+  position: absolute;
+  z-index: 0;
+  inset: -2%;
+  transform-origin: 50% 50%;
+  transform-style: preserve-3d;
+  will-change: transform;
+}
+
+.journey-immersive__canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0.92;
+}
+
+.journey-immersive__vignette {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at 50% 50%, transparent 28%, rgb(4 6 11 / 16%) 64%, rgb(3 5 9 / 82%) 100%),
+    linear-gradient(180deg, rgb(4 6 11 / 26%), transparent 22%, transparent 72%, rgb(4 6 11 / 46%));
+  pointer-events: none;
+}
+
+.journey-immersive__grain {
+  position: absolute;
+  inset: 0;
+  opacity: 0.06;
+  pointer-events: none;
+  background-image:
+    repeating-radial-gradient(
+      circle at 17% 13%,
+      rgb(255 255 255 / 22%) 0 0.45px,
+      transparent 0.55px 2.3px
+    );
+  background-size: 8px 8px;
+  mix-blend-mode: soft-light;
+}
+
+.journey-immersive__cursor-light {
+  position: absolute;
+  z-index: 2;
+  top: 0;
+  left: 0;
+  width: 12rem;
+  height: 12rem;
+  margin: -6rem 0 0 -6rem;
+  border-radius: 50%;
+  pointer-events: none;
+  opacity: 0.22;
+  background: radial-gradient(
+    circle,
+    rgb(188 205 255 / 20%) 0,
+    rgb(119 143 219 / 8%) 28%,
+    transparent 70%
+  );
+  filter: blur(6px);
+  mix-blend-mode: screen;
+  will-change: transform;
+}
+
+.journey-immersive__intro,
+.journey-immersive__stages,
+.journey-immersive__chrome {
+  position: absolute;
+  z-index: 4;
+  inset: 0;
+}
+
+.journey-immersive__intro {
+  display: grid;
+  place-content: center;
+  justify-items: center;
+  padding: 8rem 1.5rem;
+  text-align: center;
+  pointer-events: none;
+}
+
+.journey-immersive__eyebrow {
+  margin: 0 0 1.1rem;
+  font-family: var(--font-heading);
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: rgb(168 178 255 / 82%);
+}
+
+.journey-immersive__intro h2 {
+  max-width: 14ch;
+  margin: 0;
+  overflow: hidden;
+  font-family: var(--font-heading);
+  font-size: clamp(3rem, 6.4vw, 6.6rem);
+  font-weight: 680;
+  line-height: 0.9;
+  letter-spacing: -0.065em;
+  text-wrap: balance;
+}
+
+.journey-immersive__split-word,
+.journey-immersive__stage-word {
+  display: inline-block;
+  overflow: hidden;
+  will-change: transform, opacity;
+}
+
+.journey-immersive__intro-description {
+  max-width: 42rem;
+  margin: 1.6rem auto 0;
+  color: rgb(194 202 222 / 68%);
+  font-size: clamp(0.92rem, 1.2vw, 1.08rem);
+  line-height: 1.75;
+}
+
+.journey-immersive__explore {
+  display: grid;
+  justify-items: center;
+  gap: 0.95rem;
+  margin-top: clamp(3rem, 7vh, 5.5rem);
+}
+
+.journey-immersive__explore > span {
+  position: relative;
+  display: grid;
+  width: 3.35rem;
+  height: 3.35rem;
+  place-items: center;
+  border: 1px solid rgb(207 217 255 / 19%);
+  border-radius: 50%;
+  box-shadow:
+    0 0 4rem rgb(131 151 229 / 13%),
+    inset 0 0 2rem rgb(255 255 255 / 3%);
+}
+
+.journey-immersive__explore i {
+  width: 0.38rem;
+  height: 0.38rem;
+  border-radius: 50%;
+  background: #f7f9ff;
+  box-shadow:
+    0 0 1rem rgb(255 255 255 / 72%),
+    0 0 3rem rgb(133 157 255 / 72%);
+}
+
+.journey-immersive__explore strong {
+  font-size: 0.58rem;
+  font-weight: 700;
+  letter-spacing: 0.28em;
+  color: rgb(220 226 241 / 64%);
+}
+
+.journey-immersive__stages {
+  pointer-events: none;
+}
+
+.journey-immersive__stage {
+  position: absolute;
+  top: 50%;
+  width: min(34rem, 38vw);
+  transform: translateY(-50%);
+  will-change: transform, opacity, filter;
+}
+
+.journey-immersive__stage--left {
+  left: clamp(2rem, 7vw, 8rem);
+}
+
+.journey-immersive__stage--right {
+  right: clamp(2rem, 7vw, 8rem);
+}
+
+.journey-immersive__stage-index {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  margin-bottom: 1.25rem;
+  color: rgb(204 213 235 / 50%);
+  font-family: var(--font-heading);
+  font-size: 0.6rem;
+  font-weight: 650;
+  letter-spacing: 0.16em;
+}
+
+.journey-immersive__stage-index i {
+  width: 3.5rem;
+  height: 1px;
+  background: rgb(206 218 255 / 16%);
+}
+
+.journey-immersive__period {
+  margin: 0 0 0.65rem;
+  font-size: 0.64rem;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: rgb(151 166 255 / 88%);
+}
+
+.journey-immersive__stage h3 {
+  margin: 0;
+  overflow: hidden;
+  font-family: var(--font-heading);
+  font-size: clamp(2.15rem, 4.1vw, 4.6rem);
+  font-weight: 650;
+  line-height: 0.94;
+  letter-spacing: -0.055em;
+  text-wrap: balance;
+}
+
+.journey-immersive__stage-description {
+  max-width: 38rem;
+  margin: 1.15rem 0 0;
+  color: rgb(204 212 231 / 68%);
+  font-size: clamp(0.87rem, 1.05vw, 1rem);
+  line-height: 1.72;
+}
+
+.journey-immersive__stage-meta {
+  margin-top: 1rem;
+}
+
+.journey-immersive__status {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.48rem;
+  padding: 0.42rem 0.62rem;
+  border: 1px solid rgb(255 255 255 / 8%);
+  border-radius: 999px;
+  background: rgb(9 12 20 / 42%);
+  backdrop-filter: blur(14px);
+  color: rgb(211 218 236 / 72%);
+  font-size: 0.61rem;
+  font-weight: 650;
+}
+
+.journey-immersive__status i {
+  width: 0.35rem;
+  height: 0.35rem;
+  border-radius: 50%;
+  background: rgb(158 169 255);
+  box-shadow: 0 0 0.9rem rgb(142 154 255 / 54%);
+}
+
+.journey-immersive__status--completed i {
+  background: rgb(106 230 189);
+  box-shadow: 0 0 0.9rem rgb(106 230 189 / 52%);
+}
+
+.journey-immersive__status--upcoming i {
+  background: rgb(151 160 183);
+  box-shadow: none;
+}
+
+.journey-immersive__highlights {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.45rem 1.25rem;
+  margin: 1.35rem 0 0;
+  padding: 1.05rem 0 0;
+  border-top: 1px solid rgb(255 255 255 / 10%);
+  list-style: none;
+}
+
+.journey-immersive__highlights li {
+  display: grid;
+  grid-template-columns: 1.35rem 1fr;
+  align-items: start;
+  gap: 0.35rem;
+  min-width: 0;
+}
+
+.journey-immersive__highlights li > span {
+  padding-top: 0.12rem;
+  color: rgb(157 168 255 / 78%);
+  font-size: 0.55rem;
+  font-weight: 700;
+}
+
+.journey-immersive__highlights p {
+  margin: 0;
+  color: rgb(208 215 231 / 58%);
+  font-size: 0.69rem;
+  line-height: 1.45;
+}
+
+.journey-immersive__chrome {
+  z-index: 7;
+  pointer-events: none;
+  font-size: 0.55rem;
+  font-weight: 650;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgb(215 222 238 / 43%);
+}
+
+.journey-immersive__brand {
+  position: absolute;
+  top: clamp(1.5rem, 3vw, 2.5rem);
+  left: clamp(1.5rem, 3vw, 3rem);
+}
+
+.journey-immersive__chrome > p {
+  position: absolute;
+  right: clamp(1.5rem, 3vw, 3rem);
+  bottom: clamp(1.45rem, 2.5vw, 2.4rem);
+  margin: 0;
+}
+
+.journey-immersive__progress {
+  position: absolute;
+  left: clamp(1.5rem, 3vw, 3rem);
+  bottom: clamp(1.45rem, 2.5vw, 2.4rem);
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.journey-immersive__progress > div {
+  position: relative;
+  width: clamp(4rem, 7vw, 7rem);
+  height: 1px;
+  overflow: hidden;
+  background: rgb(210 219 243 / 13%);
+}
+
+.journey-immersive__progress i {
+  position: absolute;
+  inset: 0;
+  display: block;
+  transform: scaleX(0.02);
+  transform-origin: left center;
+  background: linear-gradient(90deg, #8999ff, #89d4ea);
+  box-shadow: 0 0 0.8rem rgb(137 153 255 / 35%);
+}
+
+.journey-immersive--reduced {
+  padding: clamp(6rem, 10vw, 9rem) clamp(1.25rem, 6vw, 5rem);
+}
+
+.journey-immersive__reduced-heading {
+  max-width: 54rem;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.journey-immersive__reduced-heading > p {
+  color: #9da7ff;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+
+.journey-immersive__reduced-heading h2 {
+  margin: 1rem 0;
+  font-size: clamp(2.5rem, 6vw, 5rem);
+}
+
+.journey-immersive__reduced-heading span {
+  color: rgb(205 213 232 / 68%);
+  line-height: 1.7;
+}
+
+.journey-immersive__reduced-list {
+  display: grid;
+  gap: 1rem;
+  width: min(68rem, 100%);
+  margin: 3rem auto 0;
+}
+
+.journey-immersive__reduced-list article {
+  padding: 1.5rem;
+  border: 1px solid rgb(255 255 255 / 10%);
+  border-radius: 1.25rem;
+  background: rgb(255 255 255 / 3%);
+}
+
+.journey-immersive__reduced-list span {
+  color: #9da7ff;
+  font-size: 0.68rem;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.journey-immersive__reduced-list h3 {
+  margin: 0.5rem 0 0;
+  font-size: 1.6rem;
+}
+
+.journey-immersive__reduced-list p {
+  margin: 0.7rem 0 0;
+  color: rgb(205 213 232 / 68%);
+  line-height: 1.65;
+}
+
+@media (max-width: 980px) {
+  .journey-immersive__stage {
+    width: min(38rem, calc(100% - 3rem));
+  }
+
+  .journey-immersive__stage--left,
+  .journey-immersive__stage--right {
+    right: auto;
+    left: 1.5rem;
+  }
+
+  .journey-immersive__stage h3 {
+    max-width: 13ch;
+    font-size: clamp(2.5rem, 8vw, 4.6rem);
+  }
+
+  .journey-immersive__stage-description {
+    max-width: 30rem;
+  }
+}
+
+@media (max-width: 700px) {
+  .journey-immersive__scene {
+    min-height: 39rem;
+  }
+
+  .journey-immersive__cursor-light {
+    display: none;
+  }
+
+  .journey-immersive__intro {
+    padding-inline: 1.25rem;
+  }
+
+  .journey-immersive__intro h2 {
+    font-size: clamp(2.8rem, 13vw, 4.7rem);
+  }
+
+  .journey-immersive__intro-description {
+    max-width: 28rem;
+    font-size: 0.85rem;
+  }
+
+  .journey-immersive__stage {
+    top: 48%;
+    width: calc(100% - 2.5rem);
+  }
+
+  .journey-immersive__stage--left,
+  .journey-immersive__stage--right {
+    left: 1.25rem;
+  }
+
+  .journey-immersive__stage h3 {
+    max-width: 12ch;
+    font-size: clamp(2.15rem, 12vw, 3.9rem);
+  }
+
+  .journey-immersive__stage-description {
+    max-width: 29rem;
+    font-size: 0.82rem;
+    line-height: 1.62;
+  }
+
+  .journey-immersive__highlights {
+    grid-template-columns: 1fr;
+    gap: 0.35rem;
+    max-width: 27rem;
+  }
+
+  .journey-immersive__highlights li:nth-child(n + 4) {
+    display: none;
+  }
+
+  .journey-immersive__chrome > p {
+    display: none;
+  }
+
+  .journey-immersive__brand {
+    top: 1.25rem;
+    left: 1.25rem;
+  }
+
+  .journey-immersive__progress {
+    right: 1.25rem;
+    bottom: 1.2rem;
+    left: 1.25rem;
+  }
+
+  .journey-immersive__progress > div {
+    flex: 1;
+    width: auto;
+  }
+}
+
+@media (hover: none), (pointer: coarse) {
+  .journey-immersive__cursor-light {
+    display: none;
+  }
+}

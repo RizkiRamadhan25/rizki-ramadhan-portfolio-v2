@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="700" viewBox="0 0 1200 700">
+  <defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#111827"/><stop offset="1" stop-color="#3f3f46"/></linearGradient></defs>
+  <rect width="1200" height="700" fill="url(#g)"/><rect x="130" y="100" width="940" height="500" rx="34" fill="#18181b" stroke="#71717a" stroke-width="4"/>
+  <rect x="190" y="160" width="820" height="86" rx="16" fill="#27272a"/><rect x="190" y="285" width="245" height="245" rx="18" fill="#27272a"/><rect x="470" y="285" width="245" height="245" rx="18" fill="#27272a"/><rect x="750" y="285" width="260" height="245" rx="18" fill="#27272a"/>
+  <path d="M245 448c70-120 125-125 180-70" stroke="#a1a1aa" stroke-width="12" fill="none" stroke-linecap="round"/>
+  <text x="600" y="230" fill="#fafafa" font-family="Arial Black,Arial" font-size="56" text-anchor="middle">SERENITY</text>
+</svg>

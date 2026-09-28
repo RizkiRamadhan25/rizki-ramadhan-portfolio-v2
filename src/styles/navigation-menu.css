@@ -1,0 +1,758 @@
+
+/* --------------------------------------------------------------------------
+   Persistent viewport UI
+   --------------------------------------------------------------------------
+   HomePage mounts this shell directly under <body> through createPortal().
+   This keeps the name and burger genuinely fixed even when the portfolio
+   content uses GSAP transforms / smooth scrolling.
+*/
+.portfolio-persistent-ui {
+  position: fixed !important;
+  z-index: 5900 !important;
+  inset: 0 !important;
+  width: 100vw !important;
+  height: 100dvh !important;
+  pointer-events: none !important;
+  overflow: visible !important;
+  contain: layout style !important;
+}
+
+.portfolio-persistent-ui .portfolio-persistent-name,
+.portfolio-persistent-ui .portfolio-menu-trigger,
+.portfolio-persistent-ui .portfolio-menu-overlay {
+  position: fixed !important;
+}
+
+.portfolio-persistent-ui .portfolio-persistent-name {
+  z-index: 6200 !important;
+}
+
+.portfolio-persistent-ui .portfolio-menu-trigger {
+  z-index: 6300 !important;
+  pointer-events: auto !important;
+}
+
+.portfolio-persistent-ui .portfolio-menu-overlay {
+  z-index: 6400 !important;
+  pointer-events: none !important;
+}
+
+.portfolio-persistent-ui .portfolio-menu-overlay.is-open {
+  pointer-events: auto !important;
+}
+
+
+/*
+ * Navigation overlay — isolated final layer.
+ * This file is intentionally imported AFTER hero-vintage-cursor.css.
+ * It prevents older experimental menu rules from leaving the cards at opacity: 0.
+ */
+
+html.portfolio-menu-open,
+body.portfolio-menu-open {
+  overflow: hidden !important;
+  overscroll-behavior: none !important;
+}
+
+body.portfolio-menu-open {
+  touch-action: none !important;
+}
+
+/* Old header/navigation stays removed. */
+.site-header,
+.site-nav {
+  display: none !important;
+}
+
+/* Plain burger icon only: no circle/background/border. */
+.portfolio-menu-trigger {
+  position: fixed !important;
+  z-index: 6300 !important;
+  top: clamp(1.45rem, 2.7vh, 2rem) !important;
+  right: clamp(1.5rem, 3vw, 2.7rem) !important;
+  width: 2.25rem !important;
+  height: 1.65rem !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: flex-end !important;
+  justify-content: center !important;
+  gap: 0.34rem !important;
+  padding: 0 !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  color: #f6f4ef !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  cursor: pointer !important;
+}
+
+.portfolio-menu-trigger:hover {
+  transform: none !important;
+  background: transparent !important;
+}
+
+.portfolio-menu-trigger.is-hidden,
+.portfolio-menu-trigger.is-open {
+  opacity: 0 !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+}
+
+.portfolio-menu-trigger span {
+  display: block !important;
+  height: 2px !important;
+  border-radius: 999px !important;
+  background: currentColor !important;
+}
+
+.portfolio-menu-trigger span:nth-child(1),
+.portfolio-menu-trigger span:nth-child(3) {
+  width: 2rem !important;
+}
+
+.portfolio-menu-trigger span:nth-child(2) {
+  width: 1.5rem !important;
+}
+
+/* Full-screen locked overlay. */
+.portfolio-menu-overlay {
+  position: fixed !important;
+  z-index: 6400 !important;
+  inset: 0 !important;
+  display: block !important;
+  padding: 0 !important;
+  overflow: hidden !important;
+  background: rgba(2, 2, 2, 0.86) !important;
+  backdrop-filter: blur(16px) !important;
+  -webkit-backdrop-filter: blur(16px) !important;
+
+  opacity: 0 !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+  transform: scale(1.01) !important;
+
+  transition:
+    opacity 320ms cubic-bezier(0.22, 1, 0.36, 1),
+    transform 440ms cubic-bezier(0.22, 1, 0.36, 1),
+    visibility 0s linear 620ms !important;
+}
+
+.portfolio-menu-overlay.is-open {
+  opacity: 1 !important;
+  visibility: visible !important;
+  pointer-events: auto !important;
+  transform: scale(1) !important;
+  transition:
+    opacity 320ms cubic-bezier(0.22, 1, 0.36, 1),
+    transform 440ms cubic-bezier(0.22, 1, 0.36, 1),
+    visibility 0s linear 0s !important;
+}
+
+.portfolio-menu-overlay::before {
+  content: "" !important;
+  position: absolute !important;
+  inset: 0 !important;
+  pointer-events: none !important;
+  background:
+    radial-gradient(circle at 12% 18%, rgba(255, 45, 45, 0.055), transparent 25rem),
+    radial-gradient(circle at 85% 82%, rgba(92, 108, 255, 0.04), transparent 28rem) !important;
+}
+
+/* Full viewport shell. Header/footer no longer affect the grid's center. */
+.portfolio-menu-shell {
+  position: relative !important;
+  z-index: 1 !important;
+  width: min(100% - 3rem, 78rem) !important;
+  height: 100dvh !important;
+  min-height: 0 !important;
+  display: block !important;
+  margin-inline: auto !important;
+}
+
+/* Menu heading and close action. */
+.portfolio-menu-topbar {
+  position: absolute !important;
+  z-index: 10 !important;
+  top: clamp(1.5rem, 4vh, 2.8rem) !important;
+  left: 0 !important;
+  right: 0 !important;
+  display: flex !important;
+  align-items: flex-start !important;
+  justify-content: space-between !important;
+  gap: 1rem !important;
+  margin: 0 !important;
+
+  opacity: 0 !important;
+  transform: translateY(-1rem) !important;
+  transition:
+    opacity 280ms ease,
+    transform 460ms cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+.portfolio-menu-overlay.is-open .portfolio-menu-topbar {
+  opacity: 1 !important;
+  transform: translateY(0) !important;
+  transition-delay: 35ms !important;
+}
+
+.portfolio-menu-heading {
+  display: grid !important;
+  gap: 0.45rem !important;
+}
+
+.portfolio-menu-eyebrow {
+  color: rgba(255, 255, 255, 0.42) !important;
+  font-size: 0.62rem !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.2em !important;
+  text-transform: uppercase !important;
+}
+
+.portfolio-menu-heading strong {
+  color: #f6f4ef !important;
+  font-size: clamp(1.15rem, 1.8vw, 1.55rem) !important;
+  font-weight: 700 !important;
+  line-height: 1 !important;
+  letter-spacing: -0.04em !important;
+}
+
+.portfolio-menu-close {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 0.55rem !important;
+  padding: 0 !important;
+  border: 0 !important;
+  background: transparent !important;
+  color: #f6f4ef !important;
+  font-size: clamp(1rem, 1.5vw, 1.3rem) !important;
+  font-weight: 750 !important;
+  cursor: pointer !important;
+}
+
+.portfolio-menu-close > span:last-child {
+  font-size: 1.55em !important;
+  line-height: 0.8 !important;
+  transition: transform 220ms ease !important;
+}
+
+.portfolio-menu-close:hover > span:last-child {
+  transform: rotate(90deg) !important;
+}
+
+/*
+ * TRUE viewport-centered navigation grid.
+ * Explicit opacity/visibility prevents old styles from blanking the cards.
+ */
+.portfolio-menu-grid {
+  position: absolute !important;
+  z-index: 6 !important;
+  top: 50% !important;
+  left: 50% !important;
+  width: min(62rem, calc(100vw - 5rem)) !important;
+  height: auto !important;
+  min-height: 0 !important;
+  display: grid !important;
+  grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+  grid-template-rows: repeat(2, clamp(8.6rem, 17vh, 10.4rem)) !important;
+  gap: clamp(0.75rem, 1.2vw, 1rem) !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+  transform: translate(-50%, -50%) !important;
+}
+
+/* Translucent cards + explicit visible content. */
+.portfolio-menu-card {
+  position: relative !important;
+  z-index: 1 !important;
+  min-width: 0 !important;
+  min-height: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  display: grid !important;
+  place-items: center !important;
+  overflow: hidden !important;
+  padding: 1rem !important;
+
+  border: 1px solid rgba(255, 255, 255, 0.13) !important;
+  border-radius: 1.15rem !important;
+  background: rgba(255, 255, 255, 0.075) !important;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.075),
+    0 18px 48px rgba(0, 0, 0, 0.2) !important;
+  backdrop-filter: blur(18px) saturate(112%) !important;
+  -webkit-backdrop-filter: blur(18px) saturate(112%) !important;
+
+  color: #f6f4ef !important;
+  text-decoration: none !important;
+
+  /* OUT state */
+  opacity: 0 !important;
+  visibility: visible !important;
+  filter: blur(7px) !important;
+  transform: translateY(2rem) scale(0.86) !important;
+  transform-origin: center !important;
+
+  transition:
+    opacity 300ms ease,
+    transform 540ms cubic-bezier(0.16, 1, 0.3, 1),
+    filter 420ms ease,
+    background-color 240ms ease,
+    border-color 240ms ease,
+    box-shadow 240ms ease !important;
+  will-change: transform, opacity, filter !important;
+}
+
+/* IN state */
+.portfolio-menu-overlay.is-open .portfolio-menu-card {
+  opacity: 1 !important;
+  visibility: visible !important;
+  filter: blur(0) !important;
+  transform: translateY(0) scale(1) !important;
+}
+
+/* IN stagger */
+.portfolio-menu-overlay.is-open .portfolio-menu-card:nth-child(1) {
+  transition-delay: 65ms !important;
+}
+.portfolio-menu-overlay.is-open .portfolio-menu-card:nth-child(2) {
+  transition-delay: 105ms !important;
+}
+.portfolio-menu-overlay.is-open .portfolio-menu-card:nth-child(3) {
+  transition-delay: 145ms !important;
+}
+.portfolio-menu-overlay.is-open .portfolio-menu-card:nth-child(4) {
+  transition-delay: 185ms !important;
+}
+.portfolio-menu-overlay.is-open .portfolio-menu-card:nth-child(5) {
+  transition-delay: 225ms !important;
+}
+.portfolio-menu-overlay.is-open .portfolio-menu-card:nth-child(6) {
+  transition-delay: 265ms !important;
+}
+
+/* Reverse OUT stagger. */
+.portfolio-menu-overlay:not(.is-open) .portfolio-menu-card:nth-child(1) {
+  transition-delay: 210ms !important;
+}
+.portfolio-menu-overlay:not(.is-open) .portfolio-menu-card:nth-child(2) {
+  transition-delay: 170ms !important;
+}
+.portfolio-menu-overlay:not(.is-open) .portfolio-menu-card:nth-child(3) {
+  transition-delay: 130ms !important;
+}
+.portfolio-menu-overlay:not(.is-open) .portfolio-menu-card:nth-child(4) {
+  transition-delay: 90ms !important;
+}
+.portfolio-menu-overlay:not(.is-open) .portfolio-menu-card:nth-child(5) {
+  transition-delay: 50ms !important;
+}
+.portfolio-menu-overlay:not(.is-open) .portfolio-menu-card:nth-child(6) {
+  transition-delay: 10ms !important;
+}
+
+/* Card content is always visible above the glass layer. */
+.portfolio-menu-card__index {
+  position: absolute !important;
+  z-index: 4 !important;
+  top: 0.9rem !important;
+  left: 1rem !important;
+  display: block !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+  color: rgba(255, 255, 255, 0.48) !important;
+  font-size: 0.62rem !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.13em !important;
+}
+
+.portfolio-menu-card__label {
+  position: relative !important;
+  z-index: 4 !important;
+  display: block !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+  color: #f6f4ef !important;
+  font-size: clamp(1.5rem, 2.35vw, 2.45rem) !important;
+  font-weight: 730 !important;
+  line-height: 0.95 !important;
+  letter-spacing: -0.055em !important;
+  text-align: center !important;
+  white-space: normal !important;
+}
+
+.portfolio-menu-card__arrow {
+  position: absolute !important;
+  z-index: 4 !important;
+  right: 1rem !important;
+  bottom: 0.9rem !important;
+  display: block !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+  color: rgba(255, 255, 255, 0.58) !important;
+  font-size: 1rem !important;
+  transition: transform 220ms ease !important;
+}
+
+/* Stronger but clean hover. */
+.portfolio-menu-overlay.is-open .portfolio-menu-card:hover,
+.portfolio-menu-overlay.is-open .portfolio-menu-card:focus-visible {
+  background: rgba(255, 255, 255, 0.125) !important;
+  border-color: rgba(255, 255, 255, 0.23) !important;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.1),
+    0 28px 64px rgba(0, 0, 0, 0.3) !important;
+  transform: translateY(-0.22rem) scale(1.04) !important;
+}
+
+.portfolio-menu-card:hover .portfolio-menu-card__arrow {
+  transform: translate(3px, -3px) !important;
+}
+
+/* Footer is optional visual chrome and does not affect centering. */
+.portfolio-menu-footer {
+  position: absolute !important;
+  z-index: 5 !important;
+  left: 50% !important;
+  bottom: clamp(1rem, 2.3vh, 1.8rem) !important;
+  width: min(62rem, calc(100vw - 5rem)) !important;
+  display: flex !important;
+  justify-content: space-between !important;
+  margin: 0 !important;
+  color: rgba(255, 255, 255, 0.34) !important;
+  font-size: 0.58rem !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.15em !important;
+
+  opacity: 0 !important;
+  transform: translate(-50%, 0.75rem) !important;
+  transition:
+    opacity 280ms ease,
+    transform 420ms cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+.portfolio-menu-overlay.is-open .portfolio-menu-footer {
+  opacity: 1 !important;
+  transform: translate(-50%, 0) !important;
+  transition-delay: 215ms !important;
+}
+
+/* Keep the opening Rizki Ramadhan label aligned near the top-left. */
+.hero-hello-signature {
+  top: clamp(1.45rem, 2.8vh, 2rem) !important;
+  left: clamp(1.5rem, 3vw, 2.7rem) !important;
+}
+
+/* Tablet */
+@media (max-width: 900px) {
+  .portfolio-menu-shell {
+    width: min(100% - 2rem, 46rem) !important;
+  }
+
+  .portfolio-menu-grid {
+    width: min(42rem, calc(100vw - 3rem)) !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    grid-template-rows: repeat(3, 8.6rem) !important;
+  }
+
+  .portfolio-menu-footer {
+    width: min(42rem, calc(100vw - 3rem)) !important;
+  }
+
+  .portfolio-menu-card__label {
+    font-size: clamp(1.35rem, 4vw, 2rem) !important;
+  }
+}
+
+/* Mobile */
+@media (max-width: 600px) {
+  .portfolio-menu-overlay {
+    overflow-y: auto !important;
+  }
+
+  .portfolio-menu-shell {
+    width: calc(100% - 2rem) !important;
+    height: auto !important;
+    min-height: 100dvh !important;
+    padding-block: 1.2rem !important;
+  }
+
+  .portfolio-menu-topbar {
+    position: relative !important;
+    top: auto !important;
+    left: auto !important;
+    right: auto !important;
+    margin-bottom: 1.2rem !important;
+  }
+
+  .portfolio-menu-grid {
+    position: relative !important;
+    top: auto !important;
+    left: auto !important;
+    width: 100% !important;
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+    grid-template-rows: none !important;
+    grid-auto-rows: 7.2rem !important;
+    transform: none !important;
+  }
+
+  .portfolio-menu-footer {
+    position: relative !important;
+    left: auto !important;
+    bottom: auto !important;
+    width: 100% !important;
+    margin-top: 1.2rem !important;
+    transform: translateY(0.75rem) !important;
+  }
+
+  .portfolio-menu-overlay.is-open .portfolio-menu-footer {
+    transform: translateY(0) !important;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .portfolio-menu-overlay,
+  .portfolio-menu-topbar,
+  .portfolio-menu-card,
+  .portfolio-menu-footer,
+  .portfolio-menu-card__arrow {
+    transition: none !important;
+    filter: none !important;
+  }
+}
+
+/* ==========================================================================
+   Persistent section indicator — segmented per section
+   ========================================================================== */
+
+.portfolio-section-indicator {
+  --portfolio-active-section-index: 0;
+  --portfolio-active-local-progress: 0;
+
+  position: fixed;
+  z-index: 1850;
+  top: 50%;
+  right: clamp(1.25rem, 2vw, 2rem);
+
+  width: clamp(7.8rem, 9.5vw, 10.4rem);
+  height: min(48vh, 27rem);
+
+  transform: translateY(-50%) translateX(1rem);
+
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+
+  transition:
+    opacity 420ms ease,
+    transform 520ms cubic-bezier(0.22, 1, 0.36, 1),
+    visibility 0s linear 520ms;
+}
+
+.portfolio-section-indicator.is-visible {
+  transform: translateY(-50%) translateX(0);
+  opacity: 1;
+  visibility: visible;
+  pointer-events: none;
+
+  transition:
+    opacity 420ms ease,
+    transform 520ms cubic-bezier(0.22, 1, 0.36, 1),
+    visibility 0s linear 0s;
+}
+
+.portfolio-section-indicator__track {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.portfolio-section-indicator__segments {
+  position: absolute;
+  top: 0;
+  right: -0.55rem;
+
+  width: 1.45rem;
+  height: 100%;
+
+  display: flex;
+  flex-direction: column;
+
+  /* Slightly wider permanent separators between pages. */
+  gap: clamp(0.34rem, 0.62vh, 0.52rem);
+
+  pointer-events: auto;
+}
+
+.portfolio-section-indicator__segment {
+  position: relative;
+  display: block;
+  flex: var(--section-weight, 1) 1 0;
+  width: 100%;
+  min-height: 0;
+  margin: 0;
+  padding: 0;
+  overflow: visible;
+  border: 0;
+  background: transparent;
+  box-shadow: none;
+  appearance: none;
+  -webkit-appearance: none;
+  cursor: pointer;
+}
+
+.portfolio-section-indicator__segment:focus-visible {
+  outline: 1px solid rgb(255 255 255 / 0.72);
+  outline-offset: 3px;
+}
+
+.portfolio-section-indicator__segment::before {
+  content: attr(data-section-label);
+  position: absolute;
+  top: 50%;
+  right: 1.7rem;
+  transform: translateY(-50%) translateX(0.45rem);
+  opacity: 0;
+  visibility: hidden;
+  color: #f7f7f4;
+  font-family: "Montserrat", Arial, sans-serif;
+  font-size: clamp(0.74rem, 0.8vw, 0.88rem);
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: -0.02em;
+  white-space: nowrap;
+  pointer-events: none;
+  filter: blur(2px);
+  transition:
+    opacity 220ms ease,
+    transform 320ms cubic-bezier(0.22, 1, 0.36, 1),
+    filter 280ms ease,
+    visibility 0s linear 320ms;
+}
+
+.portfolio-section-indicator__segment:not(.is-active):hover::before,
+.portfolio-section-indicator__segment:not(.is-active):focus-visible::before {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(-50%) translateX(0);
+  filter: blur(0);
+  transition:
+    opacity 220ms ease,
+    transform 320ms cubic-bezier(0.22, 1, 0.36, 1),
+    filter 280ms ease,
+    visibility 0s linear 0s;
+}
+
+.portfolio-section-indicator__segment-rail,
+.portfolio-section-indicator__segment-fill {
+  position: absolute;
+  top: 0;
+  right: 0.58rem;
+  bottom: 0;
+  display: block;
+  width: 3px;
+  height: 100%;
+  transform-origin: 50% 0%;
+}
+
+.portfolio-section-indicator__segment-rail {
+  background: rgb(255 255 255 / 0.10);
+  transition: background 240ms ease, box-shadow 240ms ease;
+}
+
+.portfolio-section-indicator__segment:hover .portfolio-section-indicator__segment-rail,
+.portfolio-section-indicator__segment:focus-visible .portfolio-section-indicator__segment-rail {
+  background: rgb(255 255 255 / 0.52);
+}
+
+.portfolio-section-indicator__segment.is-active .portfolio-section-indicator__segment-rail {
+  background: rgb(255 255 255 / 0.24);
+}
+
+.portfolio-section-indicator__segment-fill {
+  background: #ffffff;
+
+  transform:
+    scaleY(var(--section-progress, 0));
+
+  box-shadow:
+    0 0 0.5rem
+    rgb(255 255 255 / 0.08);
+
+  will-change: transform;
+}
+
+/* The active label follows the currently active segment.
+   Inside that segment it also moves based on that section's own
+   scroll duration/progress. */
+.portfolio-section-indicator__head {
+  position: absolute;
+
+  top: var(--portfolio-head-top, 0px);
+  pointer-events: none;
+  right: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+
+  padding-right: 1.52rem;
+
+  width: 100%;
+
+  transform: translateY(-50%);
+  will-change: top;
+}
+
+.portfolio-section-indicator__label {
+  display: inline-block;
+
+  color: #f7f7f4;
+
+  font-family: "Montserrat", Arial, sans-serif;
+  font-size: clamp(0.78rem, 0.85vw, 0.92rem);
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: -0.02em;
+
+  white-space: nowrap;
+
+  animation:
+    portfolio-section-label-in
+    460ms
+    cubic-bezier(0.22, 1, 0.36, 1)
+    both;
+}
+
+@keyframes portfolio-section-label-in {
+  from {
+    opacity: 0;
+    transform: translateX(0.55rem);
+    filter: blur(3px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+    filter: blur(0);
+  }
+}
+
+@media (max-width: 900px) {
+  .portfolio-section-indicator {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .portfolio-section-indicator,
+  .portfolio-section-indicator__label {
+    transition: none !important;
+    animation: none !important;
+  }
+}
+

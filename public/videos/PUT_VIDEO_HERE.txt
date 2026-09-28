@@ -1,0 +1,8 @@
+The portfolio plays learning-python-preview.mp4: a short, muted, web-optimized
+720p excerpt from the original video. Keep this file small for fast loading.
+
+The full 1080p source is stored outside the published site at
+source-media/learning-python-1080p.mp4. That directory is ignored by Git.
+
+The separate "Watch on YouTube" button opens the full video at 21:00:
+https://youtu.be/jOkEioAkGPU?t=1260

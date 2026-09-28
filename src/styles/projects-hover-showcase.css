@@ -1,0 +1,243 @@
+/* Projects — exact text-sized hover target + Horizon wave + floating preview */
+
+.projects-horizon-section.projects-section {
+  position: relative;
+  overflow: visible;
+  min-height: 100svh;
+  background: #000 !important;
+  color: #f1f0ec;
+  border: 0;
+}
+
+.projects-horizon-shell {
+  width: min(100%, 122rem);
+  margin-inline: auto;
+  padding: clamp(7rem, 8.5vw, 9rem) clamp(1.25rem, 3vw, 3rem) clamp(8rem, 10vw, 10rem);
+}
+
+.projects-horizon-list {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: clamp(0.5rem, 1vw, 1rem);
+}
+
+/* Full-width wrapper exists only for visual alignment / ScrollTrigger.
+   It is NOT interactive. */
+.project-horizon-row {
+  position: relative;
+  z-index: 20;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  min-height: clamp(5.2rem, 7vw, 7.2rem);
+  pointer-events: none;
+}
+
+/* Only this shrink-wrapped element is interactive.
+   Its width is exactly the number + project title content. */
+.project-horizon-hitbox {
+  position: relative;
+  display: inline-flex;
+  align-items: flex-start;
+  justify-content: center;
+  width: max-content;
+  max-width: 96vw;
+  gap: clamp(0.14rem, 0.28vw, 0.28rem);
+  color: inherit;
+  text-decoration: none;
+  transform: translateX(var(--project-offset, 0));
+  pointer-events: auto;
+}
+
+/* Raise ONLY the row whose real text-sized hitbox is active. */
+.project-horizon-row:has(.project-horizon-hitbox:hover),
+.project-horizon-row:focus-within {
+  z-index: 80;
+}
+
+.project-horizon-row__number {
+  position: relative;
+  z-index: 2;
+  flex: 0 0 auto;
+  margin-top: clamp(0.56rem, 0.92vw, 0.96rem);
+  font-family: "Horizon", var(--font-heading), sans-serif;
+  font-size: clamp(0.84rem, 1vw, 1.08rem);
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: 0.03em;
+  color: #f1f0ec;
+  pointer-events: none;
+}
+
+.project-horizon-title {
+  position: relative;
+  z-index: 2;
+  min-width: 0;
+  margin: 0;
+  text-align: center;
+  font-family: "Horizon", var(--font-heading), sans-serif;
+  font-size: clamp(4rem, 7vw, 8.45rem);
+  font-weight: 700;
+  line-height: 0.9;
+  letter-spacing: 0;
+  color: #e8e6e1;
+  text-transform: uppercase;
+  pointer-events: none;
+}
+
+.project-horizon-row--wide .project-horizon-title {
+  font-size: clamp(3.7rem, 6.35vw, 7.8rem);
+}
+
+.project-horizon-line-window {
+  position: relative;
+  display: block;
+  overflow: hidden;
+  padding-block: 0.055em 0.08em;
+}
+
+.project-horizon-title__layer {
+  display: block;
+  white-space: nowrap;
+}
+
+.project-horizon-title__layer--clone {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.project-wave-char {
+  position: relative;
+  display: inline-block;
+  transform: translateY(0%);
+  transform-origin: 50% 50%;
+  transition-property: transform;
+  transition-duration: 560ms;
+  transition-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+  transition-delay: var(--char-delay-out, 0ms);
+  will-change: transform;
+}
+
+.project-wave-char.is-space {
+  width: 0.28em;
+}
+
+.project-horizon-title__layer--clone .project-wave-char {
+  transform: translateY(112%);
+}
+
+.project-horizon-hitbox:hover .project-horizon-title__layer--base .project-wave-char,
+.project-horizon-hitbox:focus-visible .project-horizon-title__layer--base .project-wave-char {
+  transform: translateY(-114%);
+  transition-delay: var(--char-delay-in, 0ms);
+}
+
+.project-horizon-hitbox:hover .project-horizon-title__layer--clone .project-wave-char,
+.project-horizon-hitbox:focus-visible .project-horizon-title__layer--clone .project-wave-char {
+  transform: translateY(0%);
+  transition-delay: var(--char-delay-in, 0ms);
+}
+
+.project-horizon-hitbox:focus-visible {
+  outline: none;
+}
+
+.project-hover-preview {
+  position: fixed;
+  z-index: 50;
+  top: 0;
+  left: 0;
+  width: clamp(12.5rem, 18vw, 17rem);
+  aspect-ratio: 1.26 / 1;
+  overflow: hidden;
+  background: #0a0a0a;
+  border: 0;
+  border-radius: 0.12rem;
+  box-shadow: 0 18px 56px rgb(0 0 0 / 42%);
+  pointer-events: none;
+  transform-origin: 50% 50%;
+  will-change: transform, opacity;
+}
+
+.project-hover-preview img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  background: #090909;
+}
+
+@media (max-width: 1100px) {
+  .projects-horizon-shell {
+    padding-inline: 1.25rem;
+  }
+
+  .project-horizon-hitbox {
+    max-width: 96vw;
+    transform: translateX(calc(var(--project-offset, 0) * 0.55));
+  }
+
+  .project-horizon-title {
+    font-size: clamp(3rem, 8vw, 6.4rem);
+  }
+
+  .project-horizon-row--wide .project-horizon-title {
+    font-size: clamp(2.8rem, 7.35vw, 5.9rem);
+  }
+}
+
+@media (max-width: 760px) {
+  .projects-horizon-shell {
+    padding: 6rem 1rem 7rem;
+  }
+
+  .projects-horizon-list {
+    gap: 1rem;
+  }
+
+  .project-horizon-row {
+    min-height: auto;
+    justify-content: flex-start;
+  }
+
+  .project-horizon-hitbox {
+    max-width: 100%;
+    justify-content: flex-start;
+    gap: 0.24rem;
+    transform: none;
+  }
+
+  .project-horizon-row__number {
+    margin-top: 0.34rem;
+    font-size: 0.68rem;
+  }
+
+  .project-horizon-title,
+  .project-horizon-row--wide .project-horizon-title {
+    max-width: calc(100vw - 3.2rem);
+    font-size: clamp(2.35rem, 11.3vw, 4.2rem);
+    line-height: 0.94;
+    text-align: left;
+  }
+
+  .project-horizon-title__layer {
+    white-space: normal;
+  }
+
+  .project-hover-preview {
+    display: none !important;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .project-wave-char {
+    transition: none !important;
+  }
+
+  .project-hover-preview {
+    display: none !important;
+  }
+}

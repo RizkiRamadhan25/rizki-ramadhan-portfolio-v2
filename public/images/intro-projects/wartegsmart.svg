@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="700" viewBox="0 0 1200 700">
+  <defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#2b1505"/><stop offset="1" stop-color="#7c2d12"/></linearGradient></defs>
+  <rect width="1200" height="700" fill="url(#g)"/><rect x="110" y="100" width="980" height="500" rx="36" fill="#fff7ed"/>
+  <rect x="165" y="155" width="320" height="390" rx="22" fill="#fed7aa"/><rect x="520" y="155" width="515" height="105" rx="18" fill="#ffedd5"/><rect x="520" y="295" width="245" height="250" rx="18" fill="#ffedd5"/><rect x="790" y="295" width="245" height="250" rx="18" fill="#ffedd5"/>
+  <circle cx="325" cy="330" r="112" fill="#ea580c"/><circle cx="325" cy="330" r="72" fill="#fb923c"/><text x="775" y="225" fill="#7c2d12" font-family="Arial Black,Arial" font-size="54" text-anchor="middle">WARTEGSMART</text>
+</svg>
